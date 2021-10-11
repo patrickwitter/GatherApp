@@ -18,7 +18,7 @@ class UPCApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: router.generateRoute,
-      initialRoute: Routes.memSignIn,
+      initialRoute: Routes.mediatorScreen,
     );
   }
 }
