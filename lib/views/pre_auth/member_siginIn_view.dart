@@ -8,7 +8,11 @@ class MemeberSigIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<MemeberSigInViewModel>(builder: (context, model, child) {
-      return Scaffold();
+      return Scaffold(
+        body: Center(
+          child: Text("Welcome"),
+        ),
+      );
     });
   }
 }
