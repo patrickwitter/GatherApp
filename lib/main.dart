@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart';
+import 'package:upc_app/services/navigation_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,7 @@ class UPCApp extends StatelessWidget {
       ),
       onGenerateRoute: router.generateRoute,
       initialRoute: Routes.mediatorScreen,
+      navigatorKey: locator<NavigationService>().navigatorKey,
     );
   }
 }
