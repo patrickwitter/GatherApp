@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316501707042",
+    "project_id": "pentecostalupcapp",
+    "storage_bucket": "pentecostalupcapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316501707042:android:61a03ee6742afaf5cdbd7b",
+        "android_client_info": {
+          "package_name": "com.example.upc_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316501707042-2pp9ft7cdeepulo1fg13smp5velggs00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbJTqyQqFraGJ8pDDS_8BUlUN9Os1y8pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316501707042-2pp9ft7cdeepulo1fg13smp5velggs00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
