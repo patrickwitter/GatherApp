@@ -1,1 +1,4 @@
-abstract class DataBaseService {}
+abstract class DataBaseService {
+  Future loginUser();
+  Future logoutUser();
+}
