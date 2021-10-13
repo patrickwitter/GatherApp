@@ -10,7 +10,10 @@ class MemeberSigIn extends StatelessWidget {
     return BaseView<MemeberSigInViewModel>(builder: (context, model, child) {
       return Scaffold(
         body: Center(
-          child: Text("Welcome"),
+          child: TextButton(
+            child: Text("Member Sign In"),
+            onPressed: () => model.signIn(),
+          ),
         ),
       );
     });
