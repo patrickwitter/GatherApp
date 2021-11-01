@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,10 +16,12 @@ void setupLocator() {
   locator.registerFactory(() => MediatorScreenViewModel());
 
   // Services
-  locator.registerLazySingleton<DataBaseService>(() => FirebaseService());
+  locator.registerLazySingleton<FirebaseService>(() => FirebaseService());
   locator.registerLazySingleton<NavigationService>(() => NavigationService());
 
   //Firebase
   locator.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
   locator.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn());
+  locator.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance);
 }

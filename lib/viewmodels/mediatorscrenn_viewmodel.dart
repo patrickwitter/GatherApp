@@ -10,13 +10,14 @@ import 'package:upc_app/views/after_auth/member_view.dart';
 import 'package:upc_app/views/pre_auth/member_siginIn_view.dart';
 
 class MediatorScreenViewModel extends BaseViewModel {
-  // StreamController<int> controller = StreamController();
   final _authinstance = locator<FirebaseAuth>();
+
   Widget routeUser(BuildContext context) {
     return StreamBuilder<User?>(
       stream: _authinstance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          // Check firebase if user has already signed in. Check for uid
           return MemeberView();
         } else {
           return MemeberSigIn();

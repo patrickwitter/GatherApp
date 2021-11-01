@@ -5,8 +5,6 @@ import 'package:upc_app/views/pre_auth/mediator_screen_view.dart';
 import 'constants/routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
-  //return MaterialPageRoute(builder: (context) => Container());
-
   switch (settings.name) {
     case Routes.mediatorScreen:
       return MaterialPageRoute(builder: (context) => MediatorScreen());
