@@ -47,7 +47,7 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.church)
         .doc(Document.members)
         .collection(Collection.churchmembers)
-        .doc(MemberKey.uid)
+        .doc(mem.uid)
         .set(mem.toJson());
   }
 
@@ -99,7 +99,7 @@ class FirebaseService implements DataBaseService {
         .set(mem.toJson());
   }
 
-  Future<Stream<QuerySnapshot>> getServices() async {
+  Stream<QuerySnapshot> getServices() {
     return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.services)
@@ -107,7 +107,7 @@ class FirebaseService implements DataBaseService {
         .snapshots();
   }
 
-  Future<Stream<QuerySnapshot>> getMembers() async {
+  Stream<QuerySnapshot> getMembers() {
     return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.members)

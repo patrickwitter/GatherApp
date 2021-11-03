@@ -22,6 +22,9 @@ class Service {
   }
 
   String get id => _id;
+  int get availSp => _availSpace;
+  bool get isopen => _isOpen;
+  int get numAttend => _numAttendes;
 
   String _generateId() {
     return DateTime.now().toIso8601String();

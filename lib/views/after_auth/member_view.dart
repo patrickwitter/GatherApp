@@ -7,7 +7,7 @@ import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/customActionButton.dart';
 
 class MemberView extends StatelessWidget {
-  const MemberView({Key? key}) : super(key: key);
+  MemberView({Key? key}) : super(key: key);
 
   final List<BottomNavigationBarItem> bottomNavItems = const [
     BottomNavigationBarItem(
@@ -24,15 +24,17 @@ class MemberView extends StatelessWidget {
     )
   ];
 
-  final List<Widget> screens = const [
-    Home(),
-    UpdateMember(),
-    AlertMember(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return BaseView<MemberView_ViewModel>(builder: (context, model, child) {
+      final List<Widget> screens = [
+        Home(
+          content: model.availableServicesList(),
+        ),
+        UpdateMember(),
+        MemberAlerts(),
+      ];
+
       return Scaffold(
         appBar: AppBar(
           title: Text("Member Panel"),
@@ -44,7 +46,7 @@ class MemberView extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: model.currIndex,
-            onTap: (index) => model.updateIndex(index),
+            onTap: (index) => model.updateTabIndex(index),
             items: bottomNavItems,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.blue,
