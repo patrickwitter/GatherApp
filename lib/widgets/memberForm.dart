@@ -11,7 +11,6 @@ class MemberForm extends StatelessWidget {
     required this.phoneNumCtrlr,
     required this.isSignUp,
     this.adminCtrlr,
-    this.member,
     required this.onSubmit,
   }) : super(key: key);
 
@@ -22,7 +21,6 @@ class MemberForm extends StatelessWidget {
   final TextEditingController phoneNumCtrlr;
   final TextEditingController? adminCtrlr;
   final bool isSignUp;
-  final Member? member;
   final Function onSubmit;
 
   @override
@@ -66,15 +64,16 @@ class MemberForm extends StatelessWidget {
                     border: OutlineInputBorder(),
                   ),
                 ), // phone
-                TextFormField(
-                  controller: adminCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Enter Admin Password",
-                    labelText: "SignIn as Admin?",
-                    border: OutlineInputBorder(),
-                  ),
-                ), // admin password
-
+                (isSignUp)
+                    ? TextFormField(
+                        controller: adminCtrlr,
+                        decoration: InputDecoration(
+                          hintText: "Enter Admin Password",
+                          labelText: "SignIn as Admin?",
+                          border: OutlineInputBorder(),
+                        ),
+                      )
+                    : Container(), // admin password
                 Center(
                     child: TextButton(
                         onPressed: () {

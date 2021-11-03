@@ -25,7 +25,7 @@ class MemberView_ViewModel extends BaseViewModel {
     return StreamBuilder<QuerySnapshot>(
         stream: _service.getServices(),
         builder: (context, snapshot) {
-          print(" snap status ${snapshot.hasData}");
+          // print(" snap status ${snapshot.hasData}");
           if (snapshot.hasData) {
             Map<String, dynamic> data =
                 snapshot.data!.docs[0].data()! as Map<String, dynamic>;
@@ -37,11 +37,6 @@ class MemberView_ViewModel extends BaseViewModel {
             return Text("error");
           }
         });
-  }
-
-  void addMember() {
-    _service.addMember(Member(
-        uid: "1", fName: "love", lName: "less", pNum: 12, address: "Lot 49"));
   }
 
   void addService() {

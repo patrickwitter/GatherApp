@@ -8,6 +8,7 @@ import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/mediatorscrenn_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_sigin_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_signup_viewmodel.dart';
+import 'package:upc_app/viewmodels/member_update_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
@@ -17,6 +18,7 @@ void setupLocator() {
   locator.registerFactory(() => MemeberSigInViewModel());
   locator.registerFactory(() => MediatorScreenViewModel());
   locator.registerFactory(() => MemberSignUpViewModel());
+  locator.registerFactory(() => MemberUpdateViewModel());
   locator.registerFactory(() => MemberView_ViewModel());
 
   // Services

@@ -17,17 +17,17 @@ class BaseView<T extends BaseViewModel> extends StatefulWidget {
 }
 
 class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
+  T model = locator<T>();
   @override
   void initState() {
     if (widget.onModelReady != null) {
-      widget.onModelReady!;
+      widget.onModelReady!(model);
     }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    T model = locator<T>();
     return ChangeNotifierProvider<T>(
       create: (context) => model,
       child: Consumer<T>(

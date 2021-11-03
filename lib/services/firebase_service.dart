@@ -51,6 +51,15 @@ class FirebaseService implements DataBaseService {
         .set(mem.toJson());
   }
 
+  Future<DocumentSnapshot> getMember() async {
+    return await _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.members)
+        .collection(Collection.churchmembers)
+        .doc(_authInstance.currentUser!.uid)
+        .get();
+  }
+
   Future<bool> isMemberRegistered(String uid) async {
     DocumentSnapshot mem = await _firestoreInstance
         .collection(Collection.church)
