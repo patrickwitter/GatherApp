@@ -6,6 +6,7 @@ import 'package:upc_app/locator.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 
 import 'package:flutter/material.dart';
+import 'package:upc_app/views/after_auth/admin_view.dart';
 import 'package:upc_app/views/after_auth/member_view.dart';
 import 'package:upc_app/views/pre_auth/member_siginIn_view.dart';
 import 'package:upc_app/views/pre_auth/member_signupform_view.dart';
@@ -19,8 +20,9 @@ class MediatorScreenViewModel extends BaseViewModel {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           // Check firebase if user has already signed in. Check for uid
-          return MemberView();
+          //return MemberView();
           //return MemberSignUp();
+          return AdminView();
         } else {
           return MemeberSigIn();
         }

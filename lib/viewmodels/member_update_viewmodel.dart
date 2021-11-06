@@ -14,8 +14,8 @@ class MemberUpdateViewModel extends BaseViewModel {
   TextEditingController lNameCtrlr = TextEditingController();
   TextEditingController addressCtrlr = TextEditingController();
   TextEditingController phoneNumCtrlr = TextEditingController();
-  TextEditingController adminPasCtrlrs = TextEditingController();
   Member? _mem;
+
   bool isSignUp() => false;
 
   void onSubmit() {
@@ -36,7 +36,14 @@ class MemberUpdateViewModel extends BaseViewModel {
   void getMem() async {
     DocumentSnapshot? member = await _service.getMember();
     _mem = Member.fromJson(member.data() as Map<String, dynamic>);
-    fNameCtrlr.text = _mem!.uid;
+    updateTxtControllers(_mem!);
     notifyListeners();
+  }
+
+  void updateTxtControllers(Member member) {
+    fNameCtrlr.text = member.firstName;
+    lNameCtrlr.text = member.lastName;
+    addressCtrlr.text = member.address;
+    phoneNumCtrlr.text = member.phoneNum.toString();
   }
 }

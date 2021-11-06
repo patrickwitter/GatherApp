@@ -21,6 +21,10 @@ class Member {
   }
 
   String get uid => this._uid;
+  String get address => this._address;
+  String get firstName => this._firstName;
+  String get lastName => this._lastName;
+  int get phoneNum => this._phoneNum;
 
   factory Member.fromJson(Map<String, dynamic> json) => Member(
       uid: json[MemberKey.uid],

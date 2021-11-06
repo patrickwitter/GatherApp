@@ -7,7 +7,7 @@ import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 
 // ignore: camel_case_types
-class MemberView_ViewModel extends BaseViewModel {
+class AdminView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
   final f = locator<FirebaseFirestore>();
