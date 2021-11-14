@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:upc_app/screens/member_alert.dart';
-import 'package:upc_app/screens/member_update.dart';
-import 'package:upc_app/screens/member_view_home.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/customActionButton.dart';
+
+import 'memberviewScreens/member_view_home.dart';
 
 class AdminView extends StatelessWidget {
   AdminView({Key? key}) : super(key: key);
@@ -61,8 +60,11 @@ class AdminView extends StatelessWidget {
             selectedItemColor: Colors.blue,
             unselectedItemColor: Colors.grey,
             selectedIconTheme: IconThemeData(size: 30)),
-        floatingActionButton:
-            (model.isHome()) ? CustomActionButton() : Container(),
+        floatingActionButton: (model.isHome())
+            ? FloatingActionButton.extended(
+                onPressed: () => model.showServiceForm(),
+                label: Text("Create Service"))
+            : Container(),
       );
     });
   }

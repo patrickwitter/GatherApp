@@ -11,6 +11,7 @@ import 'package:upc_app/viewmodels/member_sigin_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_signup_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_update_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
+import 'package:upc_app/viewmodels/serviceform_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -22,6 +23,7 @@ void setupLocator() {
   locator.registerFactory(() => MemberUpdateViewModel());
   locator.registerFactory(() => MemberView_ViewModel());
   locator.registerFactory(() => AdminView_ViewModel());
+  locator.registerFactory(() => ServiceFormViewModel());
 
   // Services
   locator.registerLazySingleton<FirebaseService>(() => FirebaseService());

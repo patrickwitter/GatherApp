@@ -1,16 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:upc_app/constants/routes.dart';
 import 'package:upc_app/locator.dart';
 
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
+import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 
 // ignore: camel_case_types
 class AdminView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
-  final f = locator<FirebaseFirestore>();
+  // final f = locator<FirebaseFirestore>();
+  NavigationService _navserv = locator<NavigationService>();
 
   void updateTabIndex(int newindex) {
     currIndex = newindex;
@@ -39,8 +42,7 @@ class AdminView_ViewModel extends BaseViewModel {
         });
   }
 
-  void addService() {
-    _service.addService(
-        Service(serviceDt: DateTime.now(), isOpen: false, availSpace: 100));
+  void showServiceForm() {
+    _navserv.navigateTo(Routes.ServiceForm);
   }
 }

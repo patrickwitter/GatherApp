@@ -70,8 +70,8 @@ class FirebaseService implements DataBaseService {
     return mem.exists;
   }
 
-  Future registerMemberService(Service serv) {
-    return _firestoreInstance
+  Future registerMemberService(Service serv, Member mem) async {
+    await _firestoreInstance
         .collection(Collection.church)
         .doc(Document.members)
         .collection(Collection.churchmembers)
@@ -79,6 +79,15 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.registeredServices)
         .doc(serv.id)
         .set({"servId": serv.id});
+
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.services)
+        .collection(Collection.churchservices)
+        .doc(serv.id)
+        .collection(Collection.attendees)
+        .doc(mem.uid)
+        .set({"memberId": mem.uid});
   }
 
   Future addService(Service serv) {
@@ -121,6 +130,14 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.church)
         .doc(Document.members)
         .collection(Collection.churchmembers)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> getInfecMembers() {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.imembers)
+        .collection(Collection.infectedMembers)
         .snapshots();
   }
 }

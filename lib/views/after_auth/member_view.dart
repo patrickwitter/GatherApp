@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:upc_app/screens/member_alert.dart';
-import 'package:upc_app/screens/member_update.dart';
-import 'package:upc_app/screens/member_view_home.dart';
+
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/customActionButton.dart';
+
+import 'memberviewScreens/member_alert.dart';
+import 'memberviewScreens/member_update.dart';
+import 'memberviewScreens/member_view_home.dart';
 
 class MemberView extends StatelessWidget {
   MemberView({Key? key}) : super(key: key);

@@ -6,6 +6,7 @@ class Collection {
   static String infectedServices = "infectedServices";
   static String infectedMembers = "infectedMembers";
   static String registeredServices = "registeredServices";
+  static String attendees = "attendees";
 }
 
 class Document {
