@@ -71,16 +71,12 @@ class FirebaseService implements DataBaseService {
   }
 
   Future registerMemberService(Service serv, Member mem) async {
-    await _firestoreInstance
-        .collection(Collection.church)
-        .doc(Document.members)
-        .collection(Collection.churchmembers)
-        .doc(MemberKey.uid)
-        .collection(Collection.registeredServices)
-        .doc(serv.id)
-        .set({"servId": serv.id});
+    await addMembertoService(serv, mem);
+    await addServicetoMember(serv, mem);
+  }
 
-    return _firestoreInstance
+  Future<void> addMembertoService(Service serv, Member mem) async {
+    await _firestoreInstance
         .collection(Collection.church)
         .doc(Document.services)
         .collection(Collection.churchservices)
@@ -88,6 +84,17 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.attendees)
         .doc(mem.uid)
         .set({"memberId": mem.uid});
+  }
+
+  Future<void> addServicetoMember(Service serv, Member mem) async {
+    await _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.members)
+        .collection(Collection.churchmembers)
+        .doc(mem.uid)
+        .collection(Collection.registeredServices)
+        .doc(serv.id)
+        .set({"servId": serv.id});
   }
 
   Future addService(Service serv) {

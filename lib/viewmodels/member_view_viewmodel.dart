@@ -38,9 +38,4 @@ class MemberView_ViewModel extends BaseViewModel {
           }
         });
   }
-
-  void addService() {
-    _service.addService(
-        Service(serviceDt: DateTime.now(), isOpen: false, availSpace: 100));
-  }
 }
