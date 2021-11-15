@@ -120,7 +120,7 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.church)
         .doc(Document.imembers)
         .collection(Collection.infectedMembers)
-        .doc(MemberKey.uid)
+        .doc(mem.uid)
         .set(mem.toJson());
   }
 
