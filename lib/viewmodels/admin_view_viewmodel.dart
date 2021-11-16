@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:upc_app/constants/member_jsonKey.dart';
 import 'package:upc_app/constants/routes.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
@@ -8,6 +9,8 @@ import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
+import 'package:upc_app/widgets/memberCard.dart';
+import 'package:upc_app/widgets/serviceCard.dart';
 
 // ignore: camel_case_types
 class AdminView_ViewModel extends BaseViewModel {
@@ -31,10 +34,16 @@ class AdminView_ViewModel extends BaseViewModel {
         builder: (context, snapshot) {
           // print(" snap status ${snapshot.hasData}");
           if (snapshot.hasData) {
-            Map<String, dynamic> data =
-                snapshot.data!.docs[0].data()! as Map<String, dynamic>;
-            Service serv = Service.fromJson(data);
-            return Text("Data is Present service status ${serv.isopen}");
+            List<Service> servList = _serviceList(
+              snapshot.data,
+            );
+            return ListView.builder(
+                itemCount: servList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ServiceCard(
+                    serv: servList[index],
+                  );
+                });
           } else if (!snapshot.hasData) {
             return Text("No data");
           } else {
@@ -47,14 +56,17 @@ class AdminView_ViewModel extends BaseViewModel {
     return StreamBuilder<QuerySnapshot>(
         stream: _service.getMembers(),
         builder: (context, snapshot) {
-          //print(" snap status ${snapshot.hasData}");
           if (snapshot.hasData) {
-            Map<String, dynamic> data =
-                snapshot.data!.docs[1].data()! as Map<String, dynamic>;
-            //print("Mem data $data");
-            Member mem = Member.fromJson(data);
-            //print("${mem.firstName}");
-            return Text("Data is Present member status ${mem.firstName}");
+            List<Member> memList = _memberList(
+              snapshot.data,
+            );
+            return ListView.builder(
+                itemCount: memList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return MemberCard(
+                    mem: memList[index],
+                  );
+                });
           } else if (!snapshot.hasData) {
             return Text("No data");
           } else {
@@ -69,18 +81,40 @@ class AdminView_ViewModel extends BaseViewModel {
         builder: (context, snapshot) {
           //print(" snap status ${snapshot.hasData}");
           if (snapshot.hasData) {
-            Map<String, dynamic> data =
-                snapshot.data!.docs[0].data()! as Map<String, dynamic>;
-            //print("Mem data $data");
-            Member mem = Member.fromJson(data);
-            print("${mem.firstName}");
-            return Text("Data is Present member status ${mem.firstName}");
+            List<Member> memList = _memberList(
+              snapshot.data,
+            );
+            return ListView.builder(
+                itemCount: memList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return MemberCard(
+                    mem: memList[index],
+                  );
+                });
           } else if (!snapshot.hasData) {
             return Text("No data");
           } else {
             return Text("error");
           }
         });
+  }
+
+  List<Service> _serviceList(QuerySnapshot<Object?>? data) {
+    List<Service> servList = [];
+    data!.docs.forEach((doc) {
+      Map<String, dynamic> servdata = doc.data() as Map<String, dynamic>;
+      servList.add(Service.fromJson(servdata));
+    });
+    return servList;
+  }
+
+  List<Member> _memberList(QuerySnapshot<Object?>? data) {
+    List<Member> memList = [];
+    data!.docs.forEach((doc) {
+      Map<String, dynamic> memdata = doc.data() as Map<String, dynamic>;
+      memList.add(Member.fromJson(memdata));
+    });
+    return memList;
   }
 
   void showServiceForm() {

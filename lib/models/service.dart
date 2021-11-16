@@ -26,6 +26,10 @@ class Service {
   bool get isopen => _isOpen;
   int get numAttend => _numAttendes;
 
+  String get serviceDate {
+    return "${this._serviceDate.day} / ${this._serviceDate.month} / ${this._serviceDate.year}";
+  }
+
   String _generateId() {
     return DateTime.now().toIso8601String();
   }

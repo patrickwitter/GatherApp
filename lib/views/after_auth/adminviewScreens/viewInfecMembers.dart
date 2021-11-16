@@ -7,8 +7,6 @@ class ViewInfecMembers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: content,
-    );
+    return this.content;
   }
 }

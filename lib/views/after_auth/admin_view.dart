@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:upc_app/models/member.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewMember.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/customActionButton.dart';
+import 'package:upc_app/widgets/memberCard.dart';
 
 import 'memberviewScreens/member_view_home.dart';
 

@@ -54,8 +54,10 @@ class MemberView extends StatelessWidget {
             selectedItemColor: Colors.blue,
             unselectedItemColor: Colors.grey,
             selectedIconTheme: IconThemeData(size: 30)),
-        floatingActionButton:
-            (model.isHome()) ? CustomActionButton() : Container(),
+        floatingActionButton: (model.isHome())
+            ? FloatingActionButton.extended(
+                onPressed: () {}, label: Text("Covid Alert"))
+            : Container(),
       );
     });
   }
