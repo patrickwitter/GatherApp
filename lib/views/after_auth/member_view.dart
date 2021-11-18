@@ -28,37 +28,39 @@ class MemberView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<MemberView_ViewModel>(builder: (context, model, child) {
-      final List<Widget> screens = [
-        Home(
-          content: model.availableServicesList(),
-        ),
-        UpdateMember(),
-        MemberAlerts(),
-      ];
+    return BaseView<MemberView_ViewModel>(
+        onModelReady: (model) => model.initialize(),
+        builder: (context, model, child) {
+          final List<Widget> screens = [
+            MemberHome(
+              content: model.availableServicesList(),
+            ),
+            UpdateMember(),
+            MemberAlerts(),
+          ];
 
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("Member Panel"),
-          centerTitle: true,
-        ),
-        body: IndexedStack(
-          index: model.currIndex,
-          children: screens,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: model.currIndex,
-            onTap: (index) => model.updateTabIndex(index),
-            items: bottomNavItems,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
-            selectedIconTheme: IconThemeData(size: 30)),
-        floatingActionButton: (model.isHome())
-            ? FloatingActionButton.extended(
-                onPressed: () {}, label: Text("Covid Alert"))
-            : Container(),
-      );
-    });
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Member Panel"),
+              centerTitle: true,
+            ),
+            body: IndexedStack(
+              index: model.currIndex,
+              children: screens,
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+                currentIndex: model.currIndex,
+                onTap: (index) => model.updateTabIndex(index),
+                items: bottomNavItems,
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: Colors.blue,
+                unselectedItemColor: Colors.grey,
+                selectedIconTheme: IconThemeData(size: 30)),
+            floatingActionButton: (model.isHome())
+                ? FloatingActionButton.extended(
+                    onPressed: () {}, label: Text("Covid Alert"))
+                : Container(),
+          );
+        });
   }
 }

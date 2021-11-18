@@ -30,6 +30,15 @@ class Service {
     return "${this._serviceDate.day} / ${this._serviceDate.month} / ${this._serviceDate.year}";
   }
 
+  bool isFull() {
+    return this._availSpace == 0;
+  }
+
+  void register() {
+    _numAttendes++;
+    _availSpace--;
+  }
+
   String _generateId() {
     return DateTime.now().toIso8601String();
   }
@@ -39,6 +48,7 @@ class Service {
         isOpen: (json[ServiceKey.isOpen] == 'true'),
         availSpace: int.parse(json[ServiceKey.availSpace]),
         id: json[ServiceKey.id],
+        numAtt: json[ServiceKey.attendees],
       );
 
   Map<String, dynamic> tojson() {

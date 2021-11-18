@@ -1,16 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:upc_app/locator.dart';
+import 'package:upc_app/models/member.dart';
 
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
+import 'package:upc_app/widgets/serviceButton.dart';
+import 'package:upc_app/widgets/serviceCard.dart';
 
 // ignore: camel_case_types
 class MemberView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
-  final f = locator<FirebaseFirestore>();
+
+  bool? isreg;
+  List<Service> servList = [];
+  Map<String, bool> regMap = {};
+  late Stream _serviceStream;
 
   void updateTabIndex(int newindex) {
     currIndex = newindex;
@@ -23,19 +30,87 @@ class MemberView_ViewModel extends BaseViewModel {
 
   Widget availableServicesList() {
     return StreamBuilder<QuerySnapshot>(
-        stream: _service.getServices(),
+        stream: _serviceStream as Stream<QuerySnapshot<Object?>>,
         builder: (context, snapshot) {
           // print(" snap status ${snapshot.hasData}");
           if (snapshot.hasData) {
-            Map<String, dynamic> data =
-                snapshot.data!.docs[0].data()! as Map<String, dynamic>;
-            Service serv = Service.fromJson(data);
-            return Text("Data is Present service status ${serv.isopen}");
+            servList = _serviceList(
+              snapshot.data,
+            );
+            return ListView.builder(
+                itemCount: servList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return FutureBuilder<bool>(
+                      future: isReg(servList[index]),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData &&
+                            snapshot.data != null &&
+                            snapshot.connectionState == ConnectionState.done) {
+                          return ServiceButton(
+                            index: index,
+                            id: servList[index].id,
+                            isFull: servList[index].isFull(),
+                            isRegistered:
+                                snapshot.data!, // TODO implement registered
+                            availSpace: servList[index].availSp,
+                            numAttend: servList[index].numAttend,
+                            servDate: servList[index].serviceDate,
+                            register: (String id) => register(id, index),
+                          );
+                        } else {
+                          return Container(
+                            child: Text(
+                              "Loading",
+                              style: TextStyle(fontSize: 10),
+                            ),
+                          );
+                        }
+                      });
+                });
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else {
             return Text("error");
           }
         });
+  }
+
+  void register(String serviceId, index) async {
+    servList[index].register();
+    _service.addService(servList[index]);
+    Member mem = await getMem();
+    _service.registerMemberService(servList[index], mem);
+    notifyListeners();
+  }
+
+  Future<bool> isReg(Service serv) async {
+    Member mem = await getMem();
+    bool isregis = await _service.isMemberRegisteredService(serv, mem);
+    print(
+        "Member registed ${mem.firstName} service ${serv.serviceDate} Isreg $isregis");
+    return isregis;
+  }
+
+  List<Service> _serviceList(QuerySnapshot<Object?>? data) {
+    List<Service> servList = [];
+    data!.docs.forEach((doc) {
+      Map<String, dynamic> servdata = doc.data() as Map<String, dynamic>;
+      servList.add(Service.fromJson(servdata));
+    });
+    return servList;
+  }
+
+  Future<Member> getMem() async {
+    DocumentSnapshot doc = await _service.getMember();
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    Member mem = Member.fromJson(data);
+
+    return mem;
+  }
+
+  void initialize() {
+    _serviceStream = _service.getServices();
   }
 }

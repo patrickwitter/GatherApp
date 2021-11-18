@@ -60,6 +60,18 @@ class FirebaseService implements DataBaseService {
         .get();
   }
 
+  Future<bool> isMemberRegisteredService(Service serv, Member mem) async {
+    DocumentSnapshot data = await _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.services)
+        .collection(Collection.churchservices)
+        .doc(serv.id)
+        .collection(Collection.attendees)
+        .doc(mem.uid)
+        .get();
+    return data.exists;
+  }
+
   Future<bool> isMemberRegistered(String uid) async {
     DocumentSnapshot mem = await _firestoreInstance
         .collection(Collection.church)
@@ -71,30 +83,30 @@ class FirebaseService implements DataBaseService {
   }
 
   Future registerMemberService(Service serv, Member mem) async {
-    await addMembertoService(serv, mem);
-    await addServicetoMember(serv, mem);
+    await _addServicetoMember(serv, mem);
+    return _addMembertoService(serv, mem);
   }
 
-  Future<void> addMembertoService(Service serv, Member mem) async {
-    await _firestoreInstance
+  Future _addMembertoService(Service serv, Member mem) async {
+    return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.services)
         .collection(Collection.churchservices)
         .doc(serv.id)
         .collection(Collection.attendees)
         .doc(mem.uid)
-        .set({"memberId": mem.uid});
+        .set(mem.toJson());
   }
 
-  Future<void> addServicetoMember(Service serv, Member mem) async {
-    await _firestoreInstance
+  Future _addServicetoMember(Service serv, Member mem) async {
+    return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.members)
         .collection(Collection.churchmembers)
         .doc(mem.uid)
         .collection(Collection.registeredServices)
         .doc(serv.id)
-        .set({"servId": serv.id});
+        .set(serv.tojson());
   }
 
   Future addService(Service serv) {
