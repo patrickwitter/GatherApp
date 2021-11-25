@@ -27,11 +27,12 @@ class Member {
   int get phoneNum => this._phoneNum;
 
   factory Member.fromJson(Map<String, dynamic> json) => Member(
-      uid: json[MemberKey.uid],
-      fName: json[MemberKey.fname],
-      lName: json[MemberKey.lname],
-      pNum: int.parse(json[MemberKey.pNum]),
-      address: json[MemberKey.address]);
+        uid: json[MemberKey.uid],
+        fName: json[MemberKey.fname],
+        lName: json[MemberKey.lname],
+        pNum: int.parse(json[MemberKey.pNum]),
+        address: json[MemberKey.address],
+      );
 
   Map<String, dynamic> toJson() {
     return {

@@ -9,7 +9,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Routes.mediatorScreen:
       return MaterialPageRoute(builder: (context) => MediatorScreen());
     case Routes.ServiceForm:
-      dynamic arg = settings.arguments;
       return MaterialPageRoute(builder: (context) => ServiceForm());
     default:
       return MaterialPageRoute(builder: (context) => MediatorScreen());

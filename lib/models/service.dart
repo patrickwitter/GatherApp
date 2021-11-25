@@ -54,12 +54,12 @@ class Service {
   Map<String, dynamic> tojson() {
     return {
       ServiceKey.date: _serviceDate.toIso8601String(),
-      ServiceKey.isOpen: openString(),
+      ServiceKey.isOpen: _openString(),
       ServiceKey.availSpace: this._availSpace.toString(),
       ServiceKey.attendees: this._numAttendes,
       ServiceKey.id: this._id,
     };
   }
 
-  String openString() => (this._isOpen) ? 'true' : 'false';
+  String _openString() => (this._isOpen) ? 'true' : 'false';
 }

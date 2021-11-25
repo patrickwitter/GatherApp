@@ -20,9 +20,9 @@ class MediatorScreenViewModel extends BaseViewModel {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           // Check firebase if user has already signed in. Check for uid
-          return MemberView();
+          // return MemberView();
           //return MemberSignUp();
-          //return AdminView();
+          return AdminView();
         } else {
           return MemeberSigIn();
         }
