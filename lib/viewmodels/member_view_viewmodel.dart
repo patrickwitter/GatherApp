@@ -32,6 +32,31 @@ class MemberView_ViewModel extends BaseViewModel {
     _service.logoutUser();
   }
 
+  void covidAlert() async {
+    Member mem = await getMem();
+    _service.addInfectedMember(mem);
+    _service.addInfectedService(mem);
+  }
+
+  Widget getAlerts() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _service.x("test"),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          print("has data");
+          print("${snapshot.data!.docs.length}");
+          return Text("has data ");
+        } else if (snapshot.hasError) {
+          print("error data \n ${snapshot.error}");
+
+          return Text(" error data");
+        } else {
+          return Text(" no data");
+        }
+      },
+    );
+  }
+
   Widget availableServicesList() {
     return StreamBuilder<QuerySnapshot>(
         stream: _serviceStream as Stream<QuerySnapshot<Object?>>,
@@ -82,7 +107,7 @@ class MemberView_ViewModel extends BaseViewModel {
               isRegistered: snapshot.data!, // TODO implement registered
               availSpace: servList[index].availSp,
               numAttend: servList[index].numAttend,
-              servDate: servList[index].serviceDate,
+              servDate: servList[index].serviceDateFormat,
               register: (String id) => register(id, index),
             );
           } else {
@@ -107,8 +132,8 @@ class MemberView_ViewModel extends BaseViewModel {
   Future<bool> isReg(Service serv) async {
     Member mem = await getMem();
     bool isregis = await _service.isMemberRegisteredService(serv, mem);
-    print(
-        "Member registed ${mem.firstName} service ${serv.serviceDate} Isreg $isregis");
+    // print(
+    //     "Member registed ${mem.firstName} service ${serv.serviceDate} Isreg $isregis");
     return isregis;
   }
 

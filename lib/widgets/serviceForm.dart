@@ -6,60 +6,54 @@ import 'package:upc_app/views/base_view.dart';
 class ServiceForm extends StatelessWidget {
   const ServiceForm({
     Key? key,
-    Service? currService,
+    this.currService,
   }) : super(key: key);
 
-  // final GlobalKey<FormState> formKey;
-  // final TextEditingController fNameCtrlr;
-  // final TextEditingController lNameCtrlr;
-  // final TextEditingController addressCtrlr;
-  // final TextEditingController phoneNumCtrlr;
-  // final TextEditingController? adminCtrlr;
-  // final bool isSignUp;
-  // final Function onSubmit;
-
+  final Service? currService;
   @override
   Widget build(BuildContext context) {
     return BaseView<ServiceFormViewModel>(
+      onModelReady: (model) =>
+          model.initialize(this.currService, context: context),
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text("Create Service"),
+            title: Text(model.title),
             centerTitle: true,
           ),
           body: Form(
-              // key: formKey,
+              key: model.formkey,
               child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: model.numAttendCtrl,
-                    decoration: InputDecoration(
-                      hintText: "50",
-                      labelText: "Set Max Attendees",
-                      border: OutlineInputBorder(),
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: model.availSpaceCtrl,
+                        decoration: InputDecoration(
+                          hintText: "50",
+                          labelText: "Set Max Attendees",
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => model.pickDate(context),
+                        child: Text(model.dateText),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => model.pickTime(context),
+                        child: Text(model.timeText),
+                      ),
+                      Center(
+                          child: TextButton(
+                              onPressed: () {
+                                model.submitServiceForm();
+                              },
+                              child: Text("Submit")))
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () => model.pickDate(context),
-                    child: Text(model.dateText),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => model.pickTime(context),
-                    child: Text(model.timeText),
-                  ),
-                  Center(
-                      child: TextButton(
-                          onPressed: () {
-                            model.submitServiceForm();
-                          },
-                          child: Text("Submit")))
-                ],
-              ),
-            ),
-          )),
+                ),
+              )),
         );
       },
     );

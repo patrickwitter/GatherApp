@@ -3,10 +3,11 @@ class Collection {
   static String churchmembers = "churchmembers";
   static String churchservices = "churchservices";
   static String churchadmin = "churchadmin";
-  static String infectedServices = "infectedServices";
+  static String infectedServices = "infectedChurchServices";
   static String infectedMembers = "infectedMembers";
   static String registeredServices = "registeredServices";
   static String attendees = "attendees";
+  static String infecAttendees = "infecAttendees";
 }
 
 class Document {

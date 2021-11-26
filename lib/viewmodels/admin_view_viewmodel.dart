@@ -11,6 +11,7 @@ import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/memberCard.dart';
 import 'package:upc_app/widgets/serviceCard.dart';
+import 'package:upc_app/widgets/serviceCardButton.dart';
 
 // ignore: camel_case_types
 class AdminView_ViewModel extends BaseViewModel {
@@ -44,7 +45,7 @@ class AdminView_ViewModel extends BaseViewModel {
             return ListView.builder(
                 itemCount: servList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ServiceCard(
+                  return ServiceCardButton(
                     serv: servList[index],
                   );
                 });
@@ -93,6 +94,30 @@ class AdminView_ViewModel extends BaseViewModel {
                 itemBuilder: (BuildContext context, int index) {
                   return MemberCard(
                     mem: memList[index],
+                  );
+                });
+          } else if (!snapshot.hasData) {
+            return Text("No data");
+          } else {
+            return Text("error");
+          }
+        });
+  }
+
+  Widget infectedServicesList() {
+    return StreamBuilder<QuerySnapshot>(
+        stream: _service.getInfecServices(),
+        builder: (context, snapshot) {
+          //print(" snap status ${snapshot.hasData}");
+          if (snapshot.hasData) {
+            List<Service> servList = _serviceList(
+              snapshot.data,
+            );
+            return ListView.builder(
+                itemCount: servList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ServiceCard(
+                    serv: servList[index],
                   );
                 });
           } else if (!snapshot.hasData) {

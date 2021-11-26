@@ -104,7 +104,26 @@ class FirebaseService implements DataBaseService {
         .set(serv.tojson());
   }
 
-  Future addInfectedService(Service serv) {
+  Future addInfectedService(Member mem) async {
+    QuerySnapshot allserv = await _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.members)
+        .collection(Collection.churchmembers)
+        .doc(mem.uid)
+        .collection(Collection.registeredServices)
+        .get();
+    // print("got registered serv ${allserv.docs.length}");
+    allserv.docs.forEach((element) async {
+      Map<String, dynamic> dat = element.data() as Map<String, dynamic>;
+      await addServhelper(Service.fromJson(dat));
+    });
+
+    // all into infected services collection
+  }
+
+  Future<void> addServhelper(Service serv) {
+    // print("added service\n ${serv.tojson()}");
+
     return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.iservices)
@@ -143,6 +162,19 @@ class FirebaseService implements DataBaseService {
     return isvalid.docs.length != 0;
   }
 
+// Covid Alert
+  Stream<QuerySnapshot> x(String ui) {
+    return _firestoreInstance
+        .collectionGroup("attendees")
+        .where("firstName", isEqualTo: "Patrick2")
+        .snapshots();
+  }
+
+  // Future<void> addtoInfectedServ(List<Service> servs) {
+  //   servs.forEach((element) {});
+  // }
+
+//End Covid Alert
   Stream<QuerySnapshot> getServices() {
     return _firestoreInstance
         .collection(Collection.church)
@@ -164,6 +196,14 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.church)
         .doc(Document.imembers)
         .collection(Collection.infectedMembers)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> getInfecServices() {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.iservices)
+        .collection(Collection.infectedServices)
         .snapshots();
   }
 

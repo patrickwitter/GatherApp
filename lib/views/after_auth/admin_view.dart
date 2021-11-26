@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart';
+import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewMember.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'adminviewScreens/admin_view_home.dart';
@@ -37,9 +38,7 @@ class AdminView extends StatelessWidget {
         ),
         ViewMembers(content: model.allMembersList()),
         ViewInfecMembers(content: model.infectedMembersList()),
-        Center(
-          child: Text("View Infected Service"),
-        )
+        ViewInfectedServices(content: model.infectedServicesList()),
       ];
 
       return Scaffold(

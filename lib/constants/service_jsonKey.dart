@@ -1,6 +1,6 @@
 class ServiceKey {
   static String date = "date";
-  static String isOpen = "isOpen";
+  static String time = "time";
   static String availSpace = "space";
   static String attendees = "attendees";
   static String id = "id";

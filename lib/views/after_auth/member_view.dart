@@ -36,7 +36,7 @@ class MemberView extends StatelessWidget {
               content: model.availableServicesList(),
             ),
             UpdateMember(),
-            MemberAlerts(),
+            MemberAlerts(content: Text("Alerts")),
           ];
 
           return Scaffold(
@@ -65,7 +65,10 @@ class MemberView extends StatelessWidget {
                 selectedIconTheme: IconThemeData(size: 30)),
             floatingActionButton: (model.isHome())
                 ? FloatingActionButton.extended(
-                    onPressed: () {}, label: Text("Covid Alert"))
+                    onPressed: () {
+                      model.covidAlert();
+                    },
+                    label: Text("Covid Alert"))
                 : Container(),
           );
         });

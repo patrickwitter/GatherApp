@@ -35,9 +35,11 @@ class MemberUpdateViewModel extends BaseViewModel {
 
   void getMem() async {
     DocumentSnapshot? member = await _service.getMember();
-    _mem = Member.fromJson(member.data() as Map<String, dynamic>);
-    updateTxtControllers(_mem!);
-    notifyListeners();
+    if (member.data() != null) {
+      _mem = Member.fromJson(member.data() as Map<String, dynamic>);
+      updateTxtControllers(_mem!);
+      notifyListeners();
+    }
   }
 
   void updateTxtControllers(Member member) {
