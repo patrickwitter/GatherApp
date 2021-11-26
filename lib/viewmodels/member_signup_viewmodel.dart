@@ -17,7 +17,7 @@ class MemberSignUpViewModel extends BaseViewModel {
 
   bool isSignUp() => true;
 
-  void onSubmit() {
+  void onSubmit() async {
     Member newMem = Member(
       uid: _auth.currentUser!.uid,
       fName: fNameCtrlr.text,
@@ -25,6 +25,25 @@ class MemberSignUpViewModel extends BaseViewModel {
       pNum: int.parse(phoneNumCtrlr.text),
       address: addressCtrlr.text,
     );
-    _service.addMember(newMem);
+
+    await addAsAdmin(newMem);
+    addAsMem(newMem);
+  }
+
+  void addAsMem(Member mem) {
+    _service.addMember(mem);
+  }
+
+  Future<void> addAsAdmin(Member mem) async {
+    print("tried admin");
+    print("Password entered ${adminPasCtrlrs.text}");
+    if (adminPasCtrlrs.text != "") {
+      print("Password entered ${adminPasCtrlrs.text}");
+      bool isAdmin = await _service.verifyPassword(adminPasCtrlrs.text);
+      print("is member admin $isAdmin");
+      if (isAdmin) {
+        _service.addAdmin(mem);
+      }
+    }
   }
 }

@@ -28,6 +28,10 @@ class MemberView_ViewModel extends BaseViewModel {
     return currIndex == 0;
   }
 
+  void signout() {
+    _service.logoutUser();
+  }
+
   Widget availableServicesList() {
     return StreamBuilder<QuerySnapshot>(
         stream: _serviceStream as Stream<QuerySnapshot<Object?>>,

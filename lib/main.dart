@@ -21,6 +21,7 @@ class UPCApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
       initialRoute: routeConst.Routes.mediatorScreen,
       navigatorKey: locator<NavigationService>().navigatorKey,

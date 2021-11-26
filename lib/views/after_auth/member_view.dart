@@ -43,6 +43,13 @@ class MemberView extends StatelessWidget {
             appBar: AppBar(
               title: Text("Member Panel"),
               centerTitle: true,
+              leading: TextButton(
+                onPressed: () => model.signout(),
+                child: Text(
+                  "Logout",
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                ),
+              ),
             ),
             body: IndexedStack(
               index: model.currIndex,

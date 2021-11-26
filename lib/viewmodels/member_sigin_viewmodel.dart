@@ -11,8 +11,4 @@ class MemeberSigInViewModel extends BaseViewModel {
   void signIn() {
     _service.loginUser();
   }
-
-  void signOut() {
-    _service.logoutUser();
-  }
 }

@@ -38,10 +38,6 @@ class FirebaseService implements DataBaseService {
     _authInstance.signOut();
   }
 
-  // String getAdminPass()
-  // {
-  //   return
-  // }
   Future addMember(Member mem) {
     return _firestoreInstance
         .collection(Collection.church)
@@ -70,16 +66,6 @@ class FirebaseService implements DataBaseService {
         .doc(mem.uid)
         .get();
     return data.exists;
-  }
-
-  Future<bool> isMemberRegistered(String uid) async {
-    DocumentSnapshot mem = await _firestoreInstance
-        .collection(Collection.church)
-        .doc(Document.members)
-        .collection(Collection.churchmembers)
-        .doc(uid)
-        .get();
-    return mem.exists;
   }
 
   Future registerMemberService(Service serv, Member mem) async {
@@ -136,6 +122,27 @@ class FirebaseService implements DataBaseService {
         .set(mem.toJson());
   }
 
+  Future<void> addAdmin(Member mem) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.admin)
+        .collection(Collection.churchadmin)
+        .doc(mem.uid)
+        .set(mem.toJson());
+  }
+
+  Future<bool> verifyPassword(String pass) async {
+    QuerySnapshot isvalid = await _firestoreInstance
+        .collection(Collection.church)
+        .where(
+          "adminPassword",
+          isEqualTo: pass,
+        )
+        .get();
+
+    return isvalid.docs.length != 0;
+  }
+
   Stream<QuerySnapshot> getServices() {
     return _firestoreInstance
         .collection(Collection.church)
@@ -157,6 +164,24 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.church)
         .doc(Document.imembers)
         .collection(Collection.infectedMembers)
+        .snapshots();
+  }
+
+  Stream<DocumentSnapshot> isMemberRegistered(String uid) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.members)
+        .collection(Collection.churchmembers)
+        .doc(uid)
+        .snapshots();
+  }
+
+  Stream<DocumentSnapshot> isMemberAdmin(String uid) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.admin)
+        .collection(Collection.churchadmin)
+        .doc(uid)
         .snapshots();
   }
 }

@@ -20,6 +20,7 @@ class MemberSignUp extends StatelessWidget {
           fNameCtrlr: model.fNameCtrlr,
           lNameCtrlr: model.lNameCtrlr,
           phoneNumCtrlr: model.phoneNumCtrlr,
+          adminCtrlr: model.adminPasCtrlrs,
           isSignUp: model.isSignUp(),
           onSubmit: model.onSubmit,
         ),
