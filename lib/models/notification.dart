@@ -8,7 +8,7 @@ class Notifications {
   Notifications({required String text, DateTime? date, String? id}) {
     this._notificationTxt = text;
     this._creationDate = date ?? DateTime.now();
-    this._id = id ?? this._id;
+    this._id = id ?? DateTime.now().toIso8601String();
   }
 
   String get notificationTxt => this._notificationTxt;
@@ -29,7 +29,7 @@ class Notifications {
   Map<String, dynamic> toJson() {
     return {
       NotificationKey.text: this._notificationTxt,
-      NotificationKey.creationDt: this._creationDate,
+      NotificationKey.creationDt: this._creationDate.toIso8601String(),
       NotificationKey.id: this._id,
     };
   }

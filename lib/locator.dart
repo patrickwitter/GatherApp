@@ -11,6 +11,7 @@ import 'package:upc_app/viewmodels/member_sigin_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_signup_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_update_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
+import 'package:upc_app/viewmodels/notificationAdminView_viewmodel.dart';
 import 'package:upc_app/viewmodels/notificationView_viewmodel.dart';
 import 'package:upc_app/viewmodels/service_cardbutton_viewmodel.dart';
 import 'package:upc_app/viewmodels/serviceform_viewmodel.dart';
@@ -28,6 +29,7 @@ void setupLocator() {
   locator.registerFactory(() => ServiceFormViewModel());
   locator.registerFactory(() => ServiceCardButtonViewModel());
   locator.registerFactory(() => NotificationViewViewModel());
+  locator.registerFactory(() => NotificationAdminView_ViewModel());
   // Services
   locator.registerLazySingleton<FirebaseService>(() => FirebaseService());
   locator.registerLazySingleton<NavigationService>(() => NavigationService());

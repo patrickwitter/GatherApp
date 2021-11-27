@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:upc_app/models/notification.dart';
-import 'package:upc_app/models/service.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({required this.noti, Key? key}) : super(key: key);

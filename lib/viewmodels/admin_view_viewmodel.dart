@@ -149,4 +149,8 @@ class AdminView_ViewModel extends BaseViewModel {
   void showServiceForm() {
     _navserv.navigateTo(Routes.ServiceForm);
   }
+
+  void showNotifcation() {
+    _navserv.navigateTo(Routes.NoficationAdminPage);
+  }
 }

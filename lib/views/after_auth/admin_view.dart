@@ -52,6 +52,17 @@ class AdminView extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Colors.white),
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () => model.showNotifcation(),
+              icon: Icon(
+                Icons.announcement,
+              ),
+              color: Colors.white,
+              iconSize: 24,
+              tooltip: "Send Notifcations",
+            )
+          ],
         ),
         body: IndexedStack(
           index: model.currIndex,

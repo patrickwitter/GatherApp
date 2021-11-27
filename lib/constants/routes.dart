@@ -4,4 +4,5 @@ class Routes {
   static const String adminSignIn = "/adminSignIn";
   static const String ServiceForm = "/createService";
   static const String NotificationPage = "/viewNoti";
+  static const String NoficationAdminPage = "/adminNoti";
 }
