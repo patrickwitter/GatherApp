@@ -12,10 +12,14 @@ class ServiceCardButtonViewModel extends BaseViewModel {
   NavigationService _navserv = locator<NavigationService>();
 
   void initialize({required Service serv}) {
+    print("initialize ran for ${serv.availSp}");
     _serv = serv;
+    notifyListeners();
   }
 
-  void showupdateForm() {
-    _navserv.navigateTo(Routes.ServiceForm, arguements: {'service': _serv});
+  //TODO Fix service card bug
+  void showupdateForm(Service serv) {
+    print("cardbutton view ${_serv.availSp}");
+    _navserv.navigateTo(Routes.ServiceForm, arguements: {'service': serv});
   }
 }

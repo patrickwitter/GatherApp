@@ -8,6 +8,7 @@ class ServiceCardButton extends StatelessWidget {
   final Service serv;
   @override
   Widget build(BuildContext context) {
+    print("from cardbutton ${serv.availSp}");
     return BaseView<ServiceCardButtonViewModel>(
         onModelReady: (model) => model.initialize(serv: serv),
         builder: (context, model, child) {
@@ -15,7 +16,8 @@ class ServiceCardButton extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                model.showupdateForm();
+                print("from cardbutton2 ${serv.availSp}");
+                model.showupdateForm(serv);
               },
               child: Container(
                 width: 200,
