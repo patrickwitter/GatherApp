@@ -8,6 +8,7 @@ class Collection {
   static String registeredServices = "registeredServices";
   static String attendees = "attendees";
   static String infecAttendees = "infecAttendees";
+  static String churchNotification = "churchNotification";
 }
 
 class Document {
@@ -17,4 +18,5 @@ class Document {
   static String admin = "admin";
   static String iservices = "iservices";
   static String imembers = "imembers";
+  static String notifications = "notifications";
 }

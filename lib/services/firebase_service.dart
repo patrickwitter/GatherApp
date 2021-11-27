@@ -5,6 +5,7 @@ import 'package:upc_app/constants/collections_docs.dart';
 import 'package:upc_app/constants/member_jsonKey.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
+import 'package:upc_app/models/notification.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/database_service.dart';
 
@@ -162,6 +163,15 @@ class FirebaseService implements DataBaseService {
     return isvalid.docs.length != 0;
   }
 
+  Future<void> addNotfication(Notifications note) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.notifications)
+        .collection(Collection.churchNotification)
+        .doc(note.id)
+        .set(note.toJson());
+  }
+
 // Covid Alert
   Stream<QuerySnapshot> x(String ui) {
     return _firestoreInstance
@@ -169,10 +179,6 @@ class FirebaseService implements DataBaseService {
         .where("firstName", isEqualTo: "Patrick2")
         .snapshots();
   }
-
-  // Future<void> addtoInfectedServ(List<Service> servs) {
-  //   servs.forEach((element) {});
-  // }
 
 //End Covid Alert
   Stream<QuerySnapshot> getServices() {
@@ -222,6 +228,14 @@ class FirebaseService implements DataBaseService {
         .doc(Document.admin)
         .collection(Collection.churchadmin)
         .doc(uid)
+        .snapshots();
+  }
+
+  Stream<QuerySnapshot> getNotification() {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.notifications)
+        .collection(Collection.churchNotification)
         .snapshots();
   }
 }

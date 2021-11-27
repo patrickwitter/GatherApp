@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
-import 'package:upc_app/widgets/customActionButton.dart';
 
 import 'memberviewScreens/member_alert.dart';
 import 'memberviewScreens/member_update.dart';
@@ -50,6 +49,17 @@ class MemberView extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.white),
                 ),
               ),
+              actions: [
+                IconButton(
+                  onPressed: () => model.showNotification(),
+                  icon: Icon(
+                    Icons.announcement,
+                  ),
+                  color: Colors.white,
+                  iconSize: 24,
+                  tooltip: "See Notifcations",
+                )
+              ],
             ),
             body: IndexedStack(
               index: model.currIndex,

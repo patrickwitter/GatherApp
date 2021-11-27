@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:upc_app/constants/routes.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
 
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
+import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/serviceButton.dart';
 import 'package:upc_app/widgets/serviceCard.dart';
@@ -13,6 +15,7 @@ import 'package:upc_app/widgets/serviceCard.dart';
 class MemberView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
+  NavigationService _navserv = locator<NavigationService>();
 
   bool? isreg;
   List<Service> servList = [];
@@ -30,6 +33,10 @@ class MemberView_ViewModel extends BaseViewModel {
 
   void signout() {
     _service.logoutUser();
+  }
+
+  void showNotification() {
+    _navserv.navigateTo(Routes.NotificationPage);
   }
 
   void covidAlert() async {
