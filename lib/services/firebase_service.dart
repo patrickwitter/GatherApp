@@ -57,16 +57,15 @@ class FirebaseService implements DataBaseService {
         .get();
   }
 
-  Future<bool> isMemberRegisteredService(Service serv, Member mem) async {
-    DocumentSnapshot data = await _firestoreInstance
+  Stream<DocumentSnapshot> isMemberRegisteredService(Service serv, Member mem) {
+    return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.services)
         .collection(Collection.churchservices)
         .doc(serv.id)
         .collection(Collection.attendees)
         .doc(mem.uid)
-        .get();
-    return data.exists;
+        .snapshots();
   }
 
   Future registerMemberService(Service serv, Member mem) async {

@@ -21,6 +21,7 @@ class MemberView_ViewModel extends BaseViewModel {
   List<Service> servList = [];
   Map<String, bool> regMap = {};
   late Stream _serviceStream;
+  late Member _member;
 
   void updateTabIndex(int newindex) {
     currIndex = newindex;
@@ -76,17 +77,12 @@ class MemberView_ViewModel extends BaseViewModel {
             return ListView.builder(
                 itemCount: servList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  // return ServiceButton(
-                  //   index: index,
-                  //   id: servList[index].id,
-                  //   isFull: servList[index].isFull(),
-                  //   isRegistered: true,
-                  //   availSpace: servList[index].availSp,
-                  //   numAttend: servList[index].numAttend,
-                  //   servDate: servList[index].serviceDate,
-                  //   register: (String id) => register(id, index),
-                  // );
-                  return x(index);
+                  return ServiceButton(
+                    registerButton: registerButton(servList[index]),
+                    availSpace: servList[index].availSp,
+                    numAttend: servList[index].numAttend,
+                    servDate: servList[index].serviceDateFormat,
+                  );
                 });
           } else if (!snapshot.hasData) {
             return Center(
@@ -98,50 +94,32 @@ class MemberView_ViewModel extends BaseViewModel {
         });
   }
 
-  Widget x(index) {
-    return FutureBuilder<bool>(
-        //TODO: Remove this and replace with service button
-        future: isReg(servList[index]),
+  Widget registerButton(Service serv) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _service.isMemberRegisteredService(serv, _member),
         builder: (context, snapshot) {
-          if (snapshot.hasData &&
-              snapshot.data != null &&
-              snapshot.connectionState == ConnectionState.done) {
-            return ServiceButton(
-              //TODO: Pass a widget(Future Builder, or streambuilder) to the service button as a button
-              index: index,
-              id: servList[index].id,
-              isFull: servList[index].isFull(),
-              isRegistered: snapshot.data!, // TODO implement registered
-              availSpace: servList[index].availSp,
-              numAttend: servList[index].numAttend,
-              servDate: servList[index].serviceDateFormat,
-              register: (String id) => register(id, index),
-            );
+          if (snapshot.hasData && snapshot.data!.exists) {
+            return ElevatedButton(onPressed: null, child: Text("Registered"));
+          } else if (snapshot.hasData && !snapshot.data!.exists) {
+            if (!serv.isFull()) {
+              return ElevatedButton(
+                  onPressed: () => register(serv.id, serv),
+                  child: Text("Regsiter"));
+            } else {
+              return ElevatedButton(onPressed: null, child: Text("Full"));
+            }
           } else {
-            return Container(
-              child: Text(
-                "Loading",
-                style: TextStyle(fontSize: 10),
-              ),
-            );
+            return CircularProgressIndicator();
           }
         });
   }
 
-  void register(String serviceId, index) async {
-    servList[index].register();
-    _service.addService(servList[index]);
+  void register(String serviceId, Service serv) async {
+    serv.register();
+    _service.addService(serv);
     Member mem = await getMem();
-    _service.registerMemberService(servList[index], mem);
+    _service.registerMemberService(serv, mem);
     notifyListeners();
-  }
-
-  Future<bool> isReg(Service serv) async {
-    Member mem = await getMem();
-    bool isregis = await _service.isMemberRegisteredService(serv, mem);
-    // print(
-    //     "Member registed ${mem.firstName} service ${serv.serviceDate} Isreg $isregis");
-    return isregis;
   }
 
   List<Service> _serviceList(QuerySnapshot<Object?>? data) {
@@ -161,7 +139,8 @@ class MemberView_ViewModel extends BaseViewModel {
     return mem;
   }
 
-  void initialize() {
+  void initialize() async {
     _serviceStream = _service.getServices();
+    _member = await getMem();
   }
 }

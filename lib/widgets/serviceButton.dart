@@ -2,23 +2,16 @@ import 'package:flutter/material.dart';
 
 class ServiceButton extends StatelessWidget {
   const ServiceButton({
-    required this.id,
-    required this.isFull,
-    required this.isRegistered,
+    required this.registerButton,
     required this.availSpace,
     required this.numAttend,
     required this.servDate,
-    required this.register,
-    required this.index,
   });
-  final int index;
-  final String id;
-  final bool isFull;
+
   final int numAttend;
   final int availSpace;
   final String servDate;
-  final bool isRegistered;
-  final Function(String) register;
+  final Widget registerButton;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +32,7 @@ class ServiceButton extends StatelessWidget {
               Text("Number of Attendees: $numAttend"),
               Text("Available Sapce: $availSpace"),
               Text("Service Date: $servDate"),
-              ElevatedButton(
-                  //TODO: Take out logic
-                  onPressed:
-                      (!isFull && !isRegistered) ? () => register(id) : null,
-                  child: Text((!isFull && !isRegistered)
-                      ? "Register"
-                      : (isFull)
-                          ? "Full"
-                          : "Registered"))
+              registerButton
             ],
           ),
         ),
