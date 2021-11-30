@@ -40,7 +40,7 @@ class ValidationService {
   String? validateDate(DateTime? date, DateTime presentDate) {
     if (date == null) {
       return "Date cannot be left blank";
-    } else if (presentDate.difference(date).inDays < 0) {
+    } else if (presentDate.difference(date).inDays > 0) {
       return "Cannot pick Date that has passed";
     }
     return null;
@@ -64,11 +64,15 @@ class ValidationService {
     required TimeOfDay chosenTime,
   }) {
     bool equalhr = presentTime.hour == chosenTime.hour;
-    bool status = presentTime.hour < chosenTime.hour ||
-        (equalhr && chosenTime.minute < presentTime.minute);
+    bool isvalidHr = presentTime.hour < chosenTime.hour;
+    bool isvalidMin = chosenTime.minute > presentTime.minute;
 
-    if (presentDate.difference(chosenDate).inDays == 0 && status) {
-      return "Cannot choose Time that has passed on current day";
+    bool isvalidTime = isvalidHr || (equalhr && isvalidMin);
+
+    int daydiff = presentDate.difference(chosenDate).inDays;
+
+    if (daydiff == 0 && !isvalidTime) {
+      return "Cannot choose Time that has passed on a current day";
     }
     return null;
   }

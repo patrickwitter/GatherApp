@@ -49,7 +49,9 @@ class AdminView_ViewModel extends BaseViewModel {
                   );
                 });
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else {
             return Text("error");
           }

@@ -57,16 +57,16 @@ class ServiceFormViewModel extends BaseViewModel {
     String? datevalidErr = _valserv.validateDate(_selectedDate, _pdate);
 
     if (timevalidErr != null && datevalidErr != null) {
-      dateText = "A Date must be selected to create a service";
-      timeText = "A Time must be selected to create a service";
+      dateText = datevalidErr;
+      timeText = timevalidErr;
       notifyListeners();
       return false;
     } else if (datevalidErr != null) {
-      dateText = "A Date must be selected to create a service";
+      dateText = datevalidErr;
       notifyListeners();
       return false;
     } else if (timevalidErr != null) {
-      timeText = "A Time must be selected to create a service";
+      timeText = timevalidErr;
       notifyListeners();
       return false;
     } else {
@@ -76,9 +76,9 @@ class ServiceFormViewModel extends BaseViewModel {
         chosenDate: _selectedDate!,
         chosenTime: _selectedTime!,
       );
+
       if (dateandtimevalidErr != null) {
         timeText = dateandtimevalidErr;
-        dateText = dateandtimevalidErr;
         notifyListeners();
         return false;
       }
@@ -89,9 +89,10 @@ class ServiceFormViewModel extends BaseViewModel {
 
   Future pickDate(BuildContext context) async {
     initialDate = DateTime.now();
+
     final newDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? initialDate,
+      initialDate: isUpdatingPastService(_selectedDate) ?? initialDate,
       firstDate: initialDate,
       lastDate: DateTime(initialDate.year + 5),
     );
@@ -103,6 +104,15 @@ class ServiceFormViewModel extends BaseViewModel {
     } else {
       return;
     }
+  }
+
+  DateTime? isUpdatingPastService(DateTime? selDate) {
+    if (selDate == null) {
+      return null;
+    } else if (_valserv.validateDate(selDate, _pdate) != null) {
+      return null;
+    }
+    return selDate;
   }
 
   String _formatDate(DateTime date) {
