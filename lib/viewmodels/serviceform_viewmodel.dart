@@ -15,6 +15,9 @@ class ServiceFormViewModel extends BaseViewModel {
 
   late DateTime initialDate;
   late TimeOfDay initialTime;
+  DateTime _pdate = DateTime.now();
+  TimeOfDay _ptime = TimeOfDay.now();
+
   String dateText = "Select Date";
   String timeText = "Select Time";
   String title = "Create Service";
@@ -27,7 +30,8 @@ class ServiceFormViewModel extends BaseViewModel {
 
   void submitServiceForm() {
     validateMode = AutovalidateMode.always;
-    if (formKey.currentState!.validate()) {
+
+    if (formKey.currentState!.validate() && checkDateAndTime()) {
       validateMode = AutovalidateMode.disabled;
       Service service;
       if (currService == null) {
@@ -46,6 +50,41 @@ class ServiceFormViewModel extends BaseViewModel {
       _service.addService(service);
       _navServ.navigateBack();
     }
+  }
+
+  bool checkDateAndTime() {
+    String? timevalidErr = _valserv.validateTime(_selectedTime);
+    String? datevalidErr = _valserv.validateDate(_selectedDate, _pdate);
+
+    if (timevalidErr != null && datevalidErr != null) {
+      dateText = "A Date must be selected to create a service";
+      timeText = "A Time must be selected to create a service";
+      notifyListeners();
+      return false;
+    } else if (datevalidErr != null) {
+      dateText = "A Date must be selected to create a service";
+      notifyListeners();
+      return false;
+    } else if (timevalidErr != null) {
+      timeText = "A Time must be selected to create a service";
+      notifyListeners();
+      return false;
+    } else {
+      String? dateandtimevalidErr = _valserv.validDateAndTime(
+        presentDate: _pdate,
+        presentTime: _ptime,
+        chosenDate: _selectedDate!,
+        chosenTime: _selectedTime!,
+      );
+      if (dateandtimevalidErr != null) {
+        timeText = dateandtimevalidErr;
+        dateText = dateandtimevalidErr;
+        notifyListeners();
+        return false;
+      }
+    }
+
+    return true;
   }
 
   Future pickDate(BuildContext context) async {

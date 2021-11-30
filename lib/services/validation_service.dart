@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ValidationService {
   String? validateFirstLastName(String value) {
     if (value.isEmpty) {
@@ -31,6 +33,42 @@ class ValidationService {
     final RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
       return "Invalid Entry. Enter number or Letter";
+    }
+    return null;
+  }
+
+  String? validateDate(DateTime? date, DateTime presentDate) {
+    if (date == null) {
+      return "Date cannot be left blank";
+    } else if (presentDate.difference(date).inDays < 0) {
+      return "Cannot pick Date that has passed";
+    }
+    return null;
+  }
+
+  String? validateTime(
+    TimeOfDay? time,
+  ) {
+    if (time == null) {
+      return "Time cannot be left blank";
+    } else if (time.hour > 24 || time.minute > 59) {
+      return "Invalid input for time";
+    }
+    return null;
+  }
+
+  String? validDateAndTime({
+    required DateTime presentDate,
+    required TimeOfDay presentTime,
+    required DateTime chosenDate,
+    required TimeOfDay chosenTime,
+  }) {
+    bool equalhr = presentTime.hour == chosenTime.hour;
+    bool status = presentTime.hour < chosenTime.hour ||
+        (equalhr && chosenTime.minute < presentTime.minute);
+
+    if (presentDate.difference(chosenDate).inDays == 0 && status) {
+      return "Cannot choose Time that has passed on current day";
     }
     return null;
   }
