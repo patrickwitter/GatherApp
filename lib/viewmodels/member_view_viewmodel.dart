@@ -44,6 +44,7 @@ class MemberView_ViewModel extends BaseViewModel {
     Member mem = await getMem();
     _service.addInfectedMember(mem);
     _service.addInfectedService(mem);
+    _navserv.showSnackBar("Covid Alert Sent Successfully");
   }
 
   Widget getAlerts() {

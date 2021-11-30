@@ -18,4 +18,12 @@ class NavigationService {
     return navigatorKey.currentState!
         .pushReplacementNamed(routeName, arguments: arguements);
   }
+
+  void showSnackBar(String message,
+      {Duration duration = const Duration(seconds: 2)}) {
+    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        duration: duration,
+        content: Text(message)));
+  }
 }

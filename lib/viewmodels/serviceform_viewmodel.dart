@@ -48,6 +48,7 @@ class ServiceFormViewModel extends BaseViewModel {
             id: currService!.id);
       }
       _service.addService(service);
+      _navServ.showSnackBar("$title was completed Successfully");
       _navServ.navigateBack();
     }
   }

@@ -4,12 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
 import 'package:upc_app/services/firebase_service.dart';
+import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/services/validation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 
 class MemberUpdateViewModel extends BaseViewModel {
   FirebaseService _service = locator<FirebaseService>();
   FirebaseAuth _auth = locator<FirebaseAuth>();
+  NavigationService _navServ = locator<NavigationService>();
   final formKey = GlobalKey<FormState>();
   TextEditingController fNameCtrlr = TextEditingController();
   TextEditingController lNameCtrlr = TextEditingController();
@@ -34,6 +36,7 @@ class MemberUpdateViewModel extends BaseViewModel {
       );
 
       _service.addMember(newMem);
+      _navServ.showSnackBar(" Information was updated Successfully");
     }
   }
 
@@ -58,11 +61,13 @@ class MemberUpdateViewModel extends BaseViewModel {
   }
 
   String? validatefName(String? fName) {
+    print("updateview");
     final String? err = _valserv.validateFirstLastName(fName!);
     return err ?? null;
   }
 
   String? validatelName(String? lName) {
+    print("updateview");
     final String? err = _valserv.validateFirstLastName(lName!);
     return err ?? null;
   }

@@ -5,8 +5,9 @@ class ValidationService {
     if (value.isEmpty) {
       return 'Must not be left blank.';
     }
-    const String pattern = r"^[A-Za-z]$";
+    const String pattern = r"^[a-zA-Z]+$";
     final RegExp regex = RegExp(pattern);
+
     if (!regex.hasMatch(value)) {
       return "Invalid Firstname or Last-Name";
     }
