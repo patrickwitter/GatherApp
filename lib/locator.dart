@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:upc_app/services/database_service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
+import 'package:upc_app/services/validation_service.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/mediatorscrenn_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_sigin_viewmodel.dart';
@@ -30,9 +31,11 @@ void setupLocator() {
   locator.registerFactory(() => ServiceCardButtonViewModel());
   locator.registerFactory(() => NotificationViewViewModel());
   locator.registerFactory(() => NotificationAdminView_ViewModel());
+
   // Services
   locator.registerLazySingleton<FirebaseService>(() => FirebaseService());
   locator.registerLazySingleton<NavigationService>(() => NavigationService());
+  locator.registerLazySingleton<ValidationService>(() => ValidationService());
 
   //Firebase
   locator.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);

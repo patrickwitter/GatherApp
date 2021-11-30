@@ -23,6 +23,11 @@ class MemberSignUp extends StatelessWidget {
           adminCtrlr: model.adminPasCtrlrs,
           isSignUp: model.isSignUp(),
           onSubmit: model.onSubmit,
+          validateMode: model.validateMode,
+          validateAddress: model.validateAddress,
+          validateFName: model.validatefName,
+          validateLName: model.validatelName,
+          validatePhNum: model.validatePnum,
         ),
       );
     });

@@ -15,10 +15,15 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       dynamic args = settings.arguments;
 
       if (args != null) {
-        return MaterialPageRoute(
-            builder: (context) => ServiceForm(
-                  currService: args['service'] as Service,
-                ));
+        Map<String, dynamic> argsMap = args as Map<String, dynamic>;
+        if (argsMap.containsKey("service")) {
+          return MaterialPageRoute(
+              builder: (context) => ServiceForm(
+                    currService: args['service'] as Service,
+                  ));
+        } else {
+          return MaterialPageRoute(builder: (context) => ServiceForm());
+        }
       } else {
         return MaterialPageRoute(builder: (context) => ServiceForm());
       }

@@ -19,6 +19,11 @@ class UpdateMember extends StatelessWidget {
             phoneNumCtrlr: model.phoneNumCtrlr,
             isSignUp: model.isSignUp(),
             onSubmit: model.onSubmit,
+            validateMode: model.validateMode,
+            validateAddress: model.validateAddress,
+            validateFName: model.validatefName,
+            validateLName: model.validatelName,
+            validatePhNum: model.validatePnum,
           );
         });
   }

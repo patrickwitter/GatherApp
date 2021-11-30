@@ -10,6 +10,7 @@ class ServiceForm extends StatelessWidget {
   }) : super(key: key);
 
   final Service? currService;
+
   @override
   Widget build(BuildContext context) {
     return BaseView<ServiceFormViewModel>(
@@ -21,39 +22,44 @@ class ServiceForm extends StatelessWidget {
             title: Text(model.title),
             centerTitle: true,
           ),
-          body: Form(
-              key: model.formkey,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: model.availSpaceCtrl,
-                        decoration: InputDecoration(
-                          hintText: "50",
-                          labelText: "Set Max Attendees",
-                          border: OutlineInputBorder(),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+                key: model.formKey,
+                autovalidateMode: model.validateMode,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: model.availSpaceCtrl,
+                          decoration: InputDecoration(
+                            hintText: "50",
+                            labelText: "Set Max Attendees",
+                            border: OutlineInputBorder(),
+                          ),
+                          validator: (value) => model.validateSpace(value),
                         ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () => model.pickDate(context),
-                        child: Text(model.dateText),
-                      ),
-                      ElevatedButton(
-                        onPressed: () => model.pickTime(context),
-                        child: Text(model.timeText),
-                      ),
-                      Center(
-                          child: TextButton(
-                              onPressed: () {
-                                model.submitServiceForm();
-                              },
-                              child: Text("Submit")))
-                    ],
+                        ElevatedButton(
+                          onPressed: () => model.pickDate(context),
+                          child: Text(model.dateText),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => model.pickTime(context),
+                          child: Text(model.timeText),
+                        ),
+                        Center(
+                            child: TextButton(
+                                onPressed: () {
+                                  model.submitServiceForm();
+                                },
+                                child: Text("Submit")))
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+          ),
         );
       },
     );

@@ -4,10 +4,11 @@ import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
+import 'package:upc_app/services/validation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 
 class ServiceFormViewModel extends BaseViewModel {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController availSpaceCtrl = TextEditingController();
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
@@ -21,24 +22,30 @@ class ServiceFormViewModel extends BaseViewModel {
   FirebaseService _service = locator<FirebaseService>();
   NavigationService _navServ = locator<NavigationService>();
   Service? currService;
+  ValidationService _valserv = locator<ValidationService>();
+  AutovalidateMode validateMode = AutovalidateMode.disabled;
 
   void submitServiceForm() {
-    Service service;
-    if (currService == null) {
-      service = Service(
-        serviceDt: _selectedDate!,
-        serviceTm: _selectedTime!,
-        availSpace: int.parse(availSpaceCtrl.text),
-      );
-    } else {
-      service = Service(
+    validateMode = AutovalidateMode.always;
+    if (formKey.currentState!.validate()) {
+      validateMode = AutovalidateMode.disabled;
+      Service service;
+      if (currService == null) {
+        service = Service(
           serviceDt: _selectedDate!,
           serviceTm: _selectedTime!,
           availSpace: int.parse(availSpaceCtrl.text),
-          id: currService!.id);
+        );
+      } else {
+        service = Service(
+            serviceDt: _selectedDate!,
+            serviceTm: _selectedTime!,
+            availSpace: int.parse(availSpaceCtrl.text),
+            id: currService!.id);
+      }
+      _service.addService(service);
+      _navServ.navigateBack();
     }
-    _service.addService(service);
-    _navServ.navigateBack();
   }
 
   Future pickDate(BuildContext context) async {
@@ -96,5 +103,10 @@ class ServiceFormViewModel extends BaseViewModel {
       availSpaceCtrl.text = currServ.availSp.toString();
       notifyListeners();
     }
+  }
+
+  String? validateSpace(String? space) {
+    final String? err = _valserv.validateNum(space!);
+    return err ?? null;
   }
 }

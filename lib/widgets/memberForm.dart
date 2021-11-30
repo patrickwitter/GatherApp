@@ -11,6 +11,11 @@ class MemberForm extends StatelessWidget {
     required this.phoneNumCtrlr,
     required this.isSignUp,
     this.adminCtrlr,
+    required this.validateMode,
+    required this.validateFName,
+    required this.validateAddress,
+    required this.validateLName,
+    required this.validatePhNum,
     required this.onSubmit,
   }) : super(key: key);
 
@@ -20,57 +25,81 @@ class MemberForm extends StatelessWidget {
   final TextEditingController addressCtrlr;
   final TextEditingController phoneNumCtrlr;
   final TextEditingController? adminCtrlr;
+  final AutovalidateMode? validateMode;
   final bool isSignUp;
   final Function onSubmit;
-
+  final String? Function(String?) validateFName;
+  final String? Function(String?) validateLName;
+  final String? Function(String?) validateAddress;
+  final String? Function(String?) validatePhNum;
   @override
   Widget build(BuildContext context) {
     return Form(
+        autovalidateMode: validateMode ?? AutovalidateMode.disabled,
         key: formKey,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                TextFormField(
-                  controller: fNameCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg. Patrick",
-                    labelText: "FirstName",
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: fNameCtrlr,
+                    decoration: InputDecoration(
+                      hintText: "Eg. Patrick",
+                      labelText: "FirstName",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: this.validateFName,
                   ),
                 ), //fname
-                TextFormField(
-                  controller: lNameCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.Witter",
-                    labelText: "LastName",
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: lNameCtrlr,
+                    decoration: InputDecoration(
+                      hintText: "Eg.Witter",
+                      labelText: "LastName",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) => this.validateLName(value),
                   ),
                 ), // lname
-                TextFormField(
-                  controller: addressCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.Lot 49 Kale Avenue Spanish Town",
-                    labelText: "Address(No ',' or '-')",
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: addressCtrlr,
+                    decoration: InputDecoration(
+                      hintText: "Eg.Lot 49 Kale Avenue Spanish Town",
+                      labelText: "Address(No ',' or '-')",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: this.validateAddress,
                   ),
                 ), // adress
-                TextFormField(
-                  controller: phoneNumCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.8761234567",
-                    labelText: "Phone Number (No '-')",
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: phoneNumCtrlr,
+                    decoration: InputDecoration(
+                      hintText: "Eg.8761234567",
+                      labelText: "Phone Number (No '-')",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: this.validatePhNum,
                   ),
                 ), // phone
                 (isSignUp)
-                    ? TextFormField(
-                        controller: adminCtrlr,
-                        decoration: InputDecoration(
-                          hintText: "Enter Admin Password",
-                          labelText: "SignIn as Admin?",
-                          border: OutlineInputBorder(),
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: adminCtrlr,
+                          decoration: InputDecoration(
+                            hintText: "Enter Admin Password",
+                            labelText: "SignIn as Admin?",
+                            border: OutlineInputBorder(),
+                          ),
                         ),
                       )
                     : Container(), // admin password
