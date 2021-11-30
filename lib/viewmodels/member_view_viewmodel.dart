@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:upc_app/constants/routes.dart';
+import 'package:upc_app/enums/enums.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
 
@@ -104,7 +105,7 @@ class MemberView_ViewModel extends BaseViewModel {
             if (!serv.isFull()) {
               return ElevatedButton(
                   onPressed: () => register(serv.id, serv),
-                  child: Text("Regsiter"));
+                  child: Text("Register"));
             } else {
               return ElevatedButton(onPressed: null, child: Text("Full"));
             }
@@ -119,7 +120,6 @@ class MemberView_ViewModel extends BaseViewModel {
     _service.addService(serv);
     Member mem = await getMem();
     _service.registerMemberService(serv, mem);
-    notifyListeners();
   }
 
   List<Service> _serviceList(QuerySnapshot<Object?>? data) {
@@ -142,5 +142,6 @@ class MemberView_ViewModel extends BaseViewModel {
   void initialize() async {
     _serviceStream = _service.getServices();
     _member = await getMem();
+    setState(ViewState.idle);
   }
 }
