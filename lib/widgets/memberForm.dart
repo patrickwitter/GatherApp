@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upc_app/models/member.dart';
 
 class MemberForm extends StatelessWidget {
   const MemberForm({

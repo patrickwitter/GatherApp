@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:upc_app/constants/collections_docs.dart';
-import 'package:upc_app/constants/member_jsonKey.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
 import 'package:upc_app/models/notification.dart';

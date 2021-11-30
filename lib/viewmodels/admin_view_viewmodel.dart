@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:upc_app/constants/member_jsonKey.dart';
 import 'package:upc_app/constants/routes.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';

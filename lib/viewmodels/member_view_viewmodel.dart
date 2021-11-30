@@ -10,7 +10,6 @@ import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/serviceButton.dart';
-import 'package:upc_app/widgets/serviceCard.dart';
 
 // ignore: camel_case_types
 class MemberView_ViewModel extends BaseViewModel {
