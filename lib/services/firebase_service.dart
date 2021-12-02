@@ -34,7 +34,7 @@ class FirebaseService implements DataBaseService {
   }
 
   Future logoutUser() async {
-    await _googleSigin.disconnect();
+    await _googleSigin.signOut();
     _authInstance.signOut();
   }
 

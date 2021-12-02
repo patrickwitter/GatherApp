@@ -83,6 +83,7 @@ class MemberView_ViewModel extends BaseViewModel {
                     availSpace: servList[index].availSp,
                     numAttend: servList[index].numAttend,
                     servDate: servList[index].serviceDateFormat,
+                    servTime: servList[index].serviceTime.format(context),
                   );
                 });
           } else if (!snapshot.hasData) {

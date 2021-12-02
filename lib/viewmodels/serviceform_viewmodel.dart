@@ -42,10 +42,12 @@ class ServiceFormViewModel extends BaseViewModel {
         );
       } else {
         service = Service(
-            serviceDt: _selectedDate!,
-            serviceTm: _selectedTime!,
-            availSpace: int.parse(availSpaceCtrl.text),
-            id: currService!.id);
+          serviceDt: _selectedDate!,
+          serviceTm: _selectedTime!,
+          availSpace: int.parse(availSpaceCtrl.text),
+          id: currService!.id,
+          numAtt: currService!.numAttend,
+        );
       }
       _service.addService(service);
       _navServ.showSnackBar("$title was completed Successfully");
