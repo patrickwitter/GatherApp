@@ -159,6 +159,6 @@ class ServiceFormViewModel extends BaseViewModel {
 
   String? validateSpace(String? space) {
     final String? err = _valserv.validateNum(space!);
-    return err ?? null;
+    return err;
   }
 }

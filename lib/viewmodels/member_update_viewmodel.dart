@@ -63,22 +63,22 @@ class MemberUpdateViewModel extends BaseViewModel {
   String? validatefName(String? fName) {
     print("updateview");
     final String? err = _valserv.validateFirstLastName(fName!);
-    return err ?? null;
+    return err;
   }
 
   String? validatelName(String? lName) {
     print("updateview");
     final String? err = _valserv.validateFirstLastName(lName!);
-    return err ?? null;
+    return err;
   }
 
   String? validatePnum(String? pnum) {
     final String? err = _valserv.validateNum(pnum!);
-    return err ?? null;
+    return err;
   }
 
   String? validateAddress(String? address) {
     final String? err = _valserv.validateAplhaNum(address!);
-    return err ?? null;
+    return err;
   }
 }
