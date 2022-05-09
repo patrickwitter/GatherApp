@@ -4,6 +4,7 @@ import 'package:upc_app/locator.dart';
 import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart' as routeConst;
 import 'package:upc_app/services/navigation_service.dart';
+import 'package:upc_app/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +18,8 @@ class UPCApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'UPC App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: appLightTheme,
+      darkTheme: appDarkTheme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
       initialRoute: routeConst.Routes.mediatorScreen,
