@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
@@ -39,14 +40,25 @@ class MemberView extends StatelessWidget {
           ];
 
           return Scaffold(
+            backgroundColor: Color(0xFFFFFFFF),
             appBar: AppBar(
-              title: Text("Member Panel"),
+              backgroundColor: Color(0xFFf8f8f8),
+              title: Text(
+                "Member Panel",
+                style: GoogleFonts.lato(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+              ),
               centerTitle: true,
               leading: TextButton(
                 onPressed: () => model.signout(),
                 child: Text(
                   "Logout",
-                  style: TextStyle(fontSize: 12, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               actions: [
@@ -55,7 +67,7 @@ class MemberView extends StatelessWidget {
                   icon: Icon(
                     Icons.announcement,
                   ),
-                  color: Colors.white,
+                  color: Colors.black,
                   iconSize: 24,
                   tooltip: "See Notifcations",
                 )

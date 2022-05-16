@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.dart';
@@ -43,13 +44,20 @@ class AdminView extends StatelessWidget {
 
       return Scaffold(
         appBar: AppBar(
-          title: Text("Admin Panel"),
+          backgroundColor: Color(0xFFf8f8f8),
+          title: Text(
+            "Admin Panel",
+            style: GoogleFonts.lato(
+              color: Colors.black,
+              fontSize: 25,
+            ),
+          ),
           centerTitle: true,
           leading: TextButton(
             onPressed: () => model.signout(),
             child: Text(
               "Logout",
-              style: TextStyle(fontSize: 12, color: Colors.white),
+              style: TextStyle(fontSize: 12, color: Colors.black),
             ),
           ),
           actions: [
@@ -58,7 +66,7 @@ class AdminView extends StatelessWidget {
               icon: Icon(
                 Icons.announcement,
               ),
-              color: Colors.white,
+              color: Colors.black,
               iconSize: 24,
               tooltip: "Send Notifcations",
             )

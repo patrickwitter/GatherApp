@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/views/after_auth/notifcationAdminPage.dart';

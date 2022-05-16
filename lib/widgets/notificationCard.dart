@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/models/notification.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -7,21 +8,38 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: 200,
-        height: 200,
-        color: Colors.blue[100],
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [Text("Notifcation sent: ${noti.notificDateFormat}")],
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
-              Text("${noti.notificationTxt}"),
-            ],
+      padding: const EdgeInsets.all(16.0),
+      child: Material(
+        elevation: 6,
+        child: Container(
+          constraints: BoxConstraints(
+            minWidth: 100,
+            minHeight: 100,
+          ),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("lib/assets/images/SignInImage.jpg"),
+                fit: BoxFit.cover,
+                opacity: .4),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Notifcation sent: ${noti.notificDateFormat}"),
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "${noti.notificationTxt}",
+                  style: GoogleFonts.roboto(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
