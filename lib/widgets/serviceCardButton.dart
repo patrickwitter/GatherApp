@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/viewmodels/service_cardbutton_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';

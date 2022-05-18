@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:upc_app/models/member.dart';
 
 class MemberCard extends StatelessWidget {
