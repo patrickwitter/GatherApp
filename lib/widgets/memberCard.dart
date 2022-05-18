@@ -27,34 +27,30 @@ class MemberCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Center(child: Text("Member")),
+                Center(
+                  child: Text(
+                    "Member",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        ?.copyWith(fontSize: 15),
+                  ),
+                ),
                 Text(
                   "FirstName: ${mem.firstName}",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 Text(
                   "LastName: ${mem.lastName},",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 Text(
                   "Address : ${mem.address}",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 Text(
                   "Phone Number: ${mem.phoneNum}",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ],
             ),

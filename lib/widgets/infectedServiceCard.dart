@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/models/service.dart';
 
-class ServiceCard extends StatelessWidget {
-  const ServiceCard({required this.serv, Key? key}) : super(key: key);
+class InfectedServiceCard extends StatelessWidget {
+  const InfectedServiceCard({required this.serv, Key? key}) : super(key: key);
   final Service serv;
   @override
   Widget build(BuildContext context) {
@@ -34,18 +34,30 @@ class ServiceCard extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
               child: Column(
                 children: [
-                  Row(
-                    children: [Text("Infected Service")],
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Center(
+                    child: Text(
+                      "Infected Service",
+                      style: Theme.of(context).textTheme.headline5?.copyWith(
+                            fontSize: 15,
+                          ),
+                    ),
                   ),
-                  Text("Number of Attendees: ${serv.numAttend}",
-                      style: GoogleFonts.lato(fontSize: 20)),
-                  Text("Available Sapce: ${serv.availSp}",
-                      style: GoogleFonts.lato(fontSize: 20)),
-                  Text("Service Date: ${serv.serviceDateFormat}",
-                      style: GoogleFonts.lato(fontSize: 20)),
-                  Text("Service Time: ${serv.serviceTime.format(context)}",
-                      style: GoogleFonts.lato(fontSize: 20)),
+                  Text(
+                    "Number of Attendees: ${serv.numAttend}",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  Text(
+                    "Available Sapce: ${serv.availSp}",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  Text(
+                    "Service Date: ${serv.serviceDateFormat}",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  Text(
+                    "Service Time: ${serv.serviceTime.format(context)}",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
                 ],
               ),
             ),

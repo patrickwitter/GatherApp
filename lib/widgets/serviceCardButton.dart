@@ -4,6 +4,10 @@ import 'package:upc_app/models/service.dart';
 import 'package:upc_app/viewmodels/service_cardbutton_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 
+/*
+  Used to display service information in a card format and 
+  perform an action when tapped 
+*/
 class ServiceCardButton extends StatelessWidget {
   const ServiceCardButton({required this.serv, Key? key}) : super(key: key);
   final Service serv;
@@ -47,15 +51,15 @@ class ServiceCardButton extends StatelessWidget {
                         children: [
                           Text(
                             "Number of Attendees: ${serv.numAttend}",
-                            style: GoogleFonts.lato(fontSize: 20),
+                            style: Theme.of(context).textTheme.headline5,
                           ),
                           Text("Available Sapce: ${serv.availSp}",
-                              style: GoogleFonts.lato(fontSize: 20)),
+                              style: Theme.of(context).textTheme.headline5),
                           Text("Service Date: ${serv.serviceDateFormat}",
-                              style: GoogleFonts.lato(fontSize: 20)),
+                              style: Theme.of(context).textTheme.headline5),
                           Text(
                               "Service Time ${serv.serviceTime.format(context)}",
-                              style: GoogleFonts.lato(fontSize: 20)),
+                              style: Theme.of(context).textTheme.headline5),
                         ],
                       ),
                     ),

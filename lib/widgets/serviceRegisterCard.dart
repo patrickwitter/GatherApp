@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ServiceButton extends StatelessWidget {
-  ServiceButton(
+/*
+  Shows service details and uses a button to complete an action 
+  with the service.
+*/
+
+class ServiceRegisterCard extends StatelessWidget {
+  ServiceRegisterCard(
       {required this.registerButton,
       required this.availSpace,
       required this.numAttend,
@@ -55,14 +60,20 @@ class ServiceButton extends StatelessWidget {
                     children: [
                       Text(
                         "Number of Attendees: $numAttend",
-                        style: GoogleFonts.lato(fontSize: 20),
+                        style: Theme.of(context).textTheme.headline5,
                       ),
-                      Text("Available Sapce: $availSpace",
-                          style: GoogleFonts.lato(fontSize: 20)),
-                      Text("Service Date: $servDate",
-                          style: GoogleFonts.lato(fontSize: 20)),
-                      Text("Service Time $servTime",
-                          style: GoogleFonts.lato(fontSize: 20)),
+                      Text(
+                        "Available Sapce: $availSpace",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        "Service Date: $servDate",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        "Service Time $servTime",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                       Center(
                           child: Padding(
                         padding: const EdgeInsets.all(8.0),

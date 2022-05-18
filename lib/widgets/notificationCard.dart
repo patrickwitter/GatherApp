@@ -27,17 +27,15 @@ class NotificationCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Notifcation sent: ${noti.notificDateFormat}"),
+                Text(
+                  "Notifcation sent: ${noti.notificDateFormat}",
+                  style: Theme.of(context).textTheme.caption,
+                ),
                 SizedBox(
                   height: 40,
                 ),
-                Text(
-                  "${noti.notificationTxt}",
-                  style: GoogleFonts.roboto(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                Text("${noti.notificationTxt}",
+                    style: Theme.of(context).textTheme.headline6),
               ],
             ),
           ),
