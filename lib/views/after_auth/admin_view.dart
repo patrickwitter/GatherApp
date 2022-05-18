@@ -5,6 +5,7 @@ import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart'
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewMember.dart';
 import 'package:upc_app/views/base_view.dart';
+import 'package:upc_app/widgets/MainButton.dart';
 import 'adminviewScreens/admin_view_home.dart';
 
 class AdminView extends StatelessWidget {
@@ -54,6 +55,9 @@ class AdminView extends StatelessWidget {
           ),
           centerTitle: true,
           leading: TextButton(
+            style: TextButton.styleFrom(
+              primary: Theme.of(context).iconTheme.color,
+            ),
             onPressed: () => model.signout(),
             child: Text(
               "Logout",
@@ -85,9 +89,10 @@ class AdminView extends StatelessWidget {
             unselectedItemColor: Colors.grey,
             selectedIconTheme: IconThemeData(size: 30)),
         floatingActionButton: (model.isHome())
-            ? FloatingActionButton.extended(
-                onPressed: () => model.showServiceForm(),
-                label: Text("Create Service"))
+            ? HomeButton(
+                action: () => model.showServiceForm(),
+                text: "Create Service",
+              )
             : Container(),
       );
     });

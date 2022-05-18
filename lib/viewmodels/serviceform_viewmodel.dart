@@ -97,6 +97,10 @@ class ServiceFormViewModel extends BaseViewModel {
       initialDate: isUpdatingPastService(_selectedDate) ?? initialDate,
       firstDate: initialDate,
       lastDate: DateTime(initialDate.year + 5),
+      builder: (context, child) => Theme(
+        data: ThemeData(),
+        child: child!,
+      ),
     );
 
     if (newDate != null) {
@@ -125,7 +129,13 @@ class ServiceFormViewModel extends BaseViewModel {
     initialTime = TimeOfDay.now();
 
     final newTime = await showTimePicker(
-        context: context, initialTime: _selectedTime ?? initialTime);
+      context: context,
+      initialTime: _selectedTime ?? initialTime,
+      builder: (context, child) => Theme(
+        data: ThemeData(),
+        child: child!,
+      ),
+    );
 
     if (newTime != null) {
       _selectedTime = newTime;

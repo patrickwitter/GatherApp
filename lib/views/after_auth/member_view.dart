@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
+import 'package:upc_app/widgets/MainButton.dart';
 
 import 'memberviewScreens/member_alert.dart';
 import 'memberviewScreens/member_update.dart';
@@ -36,7 +37,11 @@ class MemberView extends StatelessWidget {
               content: model.availableServicesList(),
             ),
             UpdateMember(),
-            MemberAlerts(content: Text("Alerts")),
+            MemberAlerts(
+                content: Text(
+              "Alerts",
+              style: Theme.of(context).textTheme.caption,
+            )),
           ];
 
           return Scaffold(
@@ -45,14 +50,14 @@ class MemberView extends StatelessWidget {
               backgroundColor: Color(0xFFf8f8f8),
               title: Text(
                 "Member Panel",
-                style: GoogleFonts.lato(
-                  color: Colors.black,
-                  fontSize: 25,
-                ),
+                style: Theme.of(context).textTheme.headline4,
               ),
               centerTitle: true,
               leading: TextButton(
                 onPressed: () => model.signout(),
+                style: TextButton.styleFrom(
+                  primary: Colors.grey,
+                ),
                 child: Text(
                   "Logout",
                   style: TextStyle(
@@ -86,11 +91,10 @@ class MemberView extends StatelessWidget {
                 unselectedItemColor: Colors.grey,
                 selectedIconTheme: IconThemeData(size: 30)),
             floatingActionButton: (model.isHome())
-                ? FloatingActionButton.extended(
-                    onPressed: () {
-                      model.covidAlert();
-                    },
-                    label: Text("Covid Alert"))
+                ? HomeButton(
+                    action: () => model.covidAlert(),
+                    text: "Covid Alert",
+                  )
                 : Container(),
           );
         });

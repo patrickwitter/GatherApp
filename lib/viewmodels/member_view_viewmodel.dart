@@ -9,7 +9,9 @@ import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
-import 'package:upc_app/widgets/serviceButton.dart';
+import 'package:upc_app/widgets/serviceRegisterCard.dart';
+
+import '../widgets/registerButton.dart';
 
 // ignore: camel_case_types
 class MemberView_ViewModel extends BaseViewModel {
@@ -41,6 +43,7 @@ class MemberView_ViewModel extends BaseViewModel {
   }
 
   void covidAlert() async {
+    print("hello");
     Member mem = await getMem();
     _service.addInfectedMember(mem);
     _service.addInfectedService(mem);
@@ -78,7 +81,7 @@ class MemberView_ViewModel extends BaseViewModel {
             return ListView.builder(
                 itemCount: servList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ServiceButton(
+                  return ServiceRegisterCard(
                     registerButton: registerButton(servList[index]),
                     availSpace: servList[index].availSp,
                     numAttend: servList[index].numAttend,
@@ -101,14 +104,15 @@ class MemberView_ViewModel extends BaseViewModel {
         stream: _service.isMemberRegisteredService(serv, _member),
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data!.exists) {
-            return ElevatedButton(onPressed: null, child: Text("Registered"));
+            return RegisterButton(text: "Registered");
           } else if (snapshot.hasData && !snapshot.data!.exists) {
             if (!serv.isFull()) {
-              return ElevatedButton(
-                  onPressed: () => register(serv.id, serv),
-                  child: Text("Register"));
+              return RegisterButton(
+                action: () => register(serv.id, serv),
+                text: "Register",
+              );
             } else {
-              return ElevatedButton(onPressed: null, child: Text("Full"));
+              return RegisterButton(text: "Full");
             }
           } else {
             return CircularProgressIndicator();

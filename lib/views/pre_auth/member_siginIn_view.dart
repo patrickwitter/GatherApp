@@ -25,11 +25,7 @@ class MemeberSigIn extends StatelessWidget {
                 Center(
                   child: Text(
                     "UPC Gather App",
-                    style: TextStyle(
-                      fontFamily: "WaterBrush",
-                      fontSize: 80,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                     textAlign: TextAlign.center,
                   ),
                 ),

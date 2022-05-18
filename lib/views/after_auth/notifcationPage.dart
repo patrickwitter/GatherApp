@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:upc_app/viewmodels/notificationView_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 
@@ -16,10 +16,7 @@ class NotificationsPage extends StatelessWidget {
           backgroundColor: Color(0xFFf8f8f8),
           title: Text(
             "Notifcations",
-            style: GoogleFonts.lato(
-              color: Colors.black,
-              fontSize: 25,
-            ),
+            style: Theme.of(context).textTheme.headline4,
           ),
           centerTitle: true,
         ),

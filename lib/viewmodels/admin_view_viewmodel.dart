@@ -9,7 +9,7 @@ import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/memberCard.dart';
-import 'package:upc_app/widgets/serviceCard.dart';
+import 'package:upc_app/widgets/infectedServiceCard.dart';
 import 'package:upc_app/widgets/serviceCardButton.dart';
 
 // ignore: camel_case_types
@@ -117,7 +117,7 @@ class AdminView_ViewModel extends BaseViewModel {
             return ListView.builder(
                 itemCount: servList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ServiceCard(
+                  return InfectedServiceCard(
                     serv: servList[index],
                   );
                 });
