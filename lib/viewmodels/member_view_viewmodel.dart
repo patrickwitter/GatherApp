@@ -11,6 +11,7 @@ import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/serviceRegisterCard.dart';
 
+import '../widgets/customProgressIndicator.dart';
 import '../widgets/registerButton.dart';
 
 // ignore: camel_case_types
@@ -91,7 +92,7 @@ class MemberView_ViewModel extends BaseViewModel {
                 });
           } else if (!snapshot.hasData) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CustomCircularProgressIndicator(),
             );
           } else {
             return Text("error");
@@ -115,7 +116,7 @@ class MemberView_ViewModel extends BaseViewModel {
               return RegisterButton(text: "Full");
             }
           } else {
-            return CircularProgressIndicator();
+            return CustomCircularProgressIndicator();
           }
         });
   }

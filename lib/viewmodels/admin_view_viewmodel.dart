@@ -8,6 +8,7 @@ import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
+import 'package:upc_app/widgets/customProgressIndicator.dart';
 import 'package:upc_app/widgets/memberCard.dart';
 import 'package:upc_app/widgets/infectedServiceCard.dart';
 import 'package:upc_app/widgets/serviceCardButton.dart';
@@ -50,7 +51,7 @@ class AdminView_ViewModel extends BaseViewModel {
                 });
           } else if (!snapshot.hasData) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CustomCircularProgressIndicator(),
             );
           } else {
             return Text("error");
