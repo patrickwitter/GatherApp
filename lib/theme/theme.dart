@@ -7,4 +7,5 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
       secondary: Colors.grey,
     ),
     iconTheme: IconThemeData(color: Colors.blue));
+
 ThemeData appDarkTheme = ThemeData.dark();

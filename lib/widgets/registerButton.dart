@@ -9,10 +9,16 @@ class RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(minimumSize: Size(200, 50)),
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(200, 50),
+        primary: Theme.of(context).iconTheme.color,
+      ),
       onPressed: action == null ? null : () => action,
       child: Text(
         text,
+        style: Theme.of(context).textTheme.headline5?.copyWith(
+              color: Colors.white,
+            ),
       ),
     );
   }
