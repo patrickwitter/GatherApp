@@ -46,6 +46,7 @@ class MemberView extends StatelessWidget {
           return Scaffold(
             backgroundColor: Color(0xFFFFFFFF),
             appBar: AppBar(
+              leadingWidth: MediaQuery.of(context).size.width * 25,
               backgroundColor: Color(0xFFf8f8f8),
               title: Text(
                 "Member Panel",

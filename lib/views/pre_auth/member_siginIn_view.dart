@@ -15,25 +15,33 @@ class MemeberSigIn extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("lib/assets/images/SignInImage.jpg"),
-                  opacity: .5,
-                  fit: BoxFit.fitHeight),
+                image: AssetImage("lib/assets/images/SignInImage.jpg"),
+                opacity: .5,
+                fit: BoxFit.fitHeight,
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                  child: Text(
-                    "UPC Gather App",
-                    style: Theme.of(context).textTheme.headline1,
-                    textAlign: TextAlign.center,
+                  child: FittedBox(
+                    child: Text(
+                      "UPC Gather App",
+                      style: Theme.of(context).textTheme.headline1,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height.toDouble() * .3),
+                    top: MediaQuery.of(context).size.height.toDouble() * .3,
+                    bottom: 10,
+                  ),
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 30,
+                    ),
                     width: MediaQuery.of(context).size.width.toDouble() * .75,
                     decoration: BoxDecoration(border: Border.all()),
                     child: TextButton(
