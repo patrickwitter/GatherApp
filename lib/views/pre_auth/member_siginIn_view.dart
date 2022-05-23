@@ -38,7 +38,10 @@ class MemeberSigIn extends StatelessWidget {
                     bottom: 10,
                   ),
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 30,
+                    ),
                     width: MediaQuery.of(context).size.width.toDouble() * .75,
                     decoration: BoxDecoration(border: Border.all()),
                     child: TextButton(
