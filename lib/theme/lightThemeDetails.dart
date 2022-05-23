@@ -39,3 +39,9 @@ TextTheme lightTextTheme = TextTheme(
 );
 
 ThemeData pickerTheme = ThemeData();
+
+ColorScheme lightColorScheme = ColorScheme.light().copyWith(
+  secondary: Colors.grey,
+);
+
+IconThemeData lightIcontheme = IconThemeData(color: Colors.blue);
