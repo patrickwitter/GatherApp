@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
@@ -18,7 +19,7 @@ class MemberView extends StatelessWidget {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.contact_mail_sharp),
-      label: "Update ContactInfo",
+      label: "ContactInfo",
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.add_alert_outlined),
@@ -44,10 +45,10 @@ class MemberView extends StatelessWidget {
           ];
 
           return Scaffold(
-            backgroundColor: Color(0xFFFFFFFF),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
-              leadingWidth: MediaQuery.of(context).size.width * 25,
-              backgroundColor: Color(0xFFf8f8f8),
+              leadingWidth: 25.w,
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               title: Text(
                 "Member Panel",
                 style: Theme.of(context).textTheme.headline4,
@@ -56,14 +57,13 @@ class MemberView extends StatelessWidget {
               leading: TextButton(
                 onPressed: () => model.signout(),
                 style: TextButton.styleFrom(
-                  primary: Colors.grey,
+                  primary: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Text(
                   "Logout",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black,
-                  ),
+                  style: Theme.of(context).textTheme.caption?.copyWith(
+                        fontSize: 13.sp,
+                      ),
                 ),
               ),
               actions: [
@@ -72,8 +72,8 @@ class MemberView extends StatelessWidget {
                   icon: Icon(
                     Icons.announcement,
                   ),
-                  color: Colors.black,
-                  iconSize: 24,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  iconSize: 7.w,
                   tooltip: "See Notifcations",
                 )
               ],
@@ -83,13 +83,16 @@ class MemberView extends StatelessWidget {
               children: screens,
             ),
             bottomNavigationBar: BottomNavigationBar(
-                currentIndex: model.currIndex,
-                onTap: (index) => model.updateTabIndex(index),
-                items: bottomNavItems,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.blue,
-                unselectedItemColor: Colors.grey,
-                selectedIconTheme: IconThemeData(size: 30)),
+              currentIndex: model.currIndex,
+              onTap: (index) => model.updateTabIndex(index),
+              items: bottomNavItems,
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor:
+                  Theme.of(context).colorScheme.onPrimaryContainer,
+              unselectedItemColor:
+                  Theme.of(context).colorScheme.onSecondaryContainer,
+              selectedIconTheme: IconThemeData(size: 8.w),
+            ),
             floatingActionButton: (model.isHome())
                 ? HomeButton(
                     action: () => model.covidAlert(),

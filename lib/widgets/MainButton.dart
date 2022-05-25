@@ -11,7 +11,12 @@ class HomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: this.action,
-      label: Text(text),
+      label: Text(
+        text,
+        style: Theme.of(context).textTheme.headline5?.copyWith(
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+      ),
       backgroundColor: Theme.of(context).iconTheme.color,
       foregroundColor: Colors.white,
     );

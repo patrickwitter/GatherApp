@@ -6,42 +6,73 @@
 // headline4: Used to style text shwowing menu headers
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
+/*
+  headline3: For large text buttons
+  headline1: For large header text
+  headline4: For Screen title headers 
+  headline5: For displaying information on cards
+  caption: For showing additional dates such as dates on cards
+  headline6: For displaying information on cards but wuth different font and weight
+*/
 TextTheme lightTextTheme = TextTheme(
   headline5: GoogleFonts.lato(
-    fontSize: 20,
+    fontSize: 16.sp,
     color: Colors.black,
   ),
   headline4: GoogleFonts.lato(
-    fontSize: 25,
+    fontSize: 23.sp,
     color: Colors.black,
   ),
   headline6: GoogleFonts.roboto(
-    fontSize: 20,
-    fontWeight: FontWeight.w500,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
     color: Colors.black,
   ),
   caption: TextStyle(
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 14.sp,
   ),
   headline1: TextStyle(
     fontFamily: "WaterBrush",
-    fontSize: 80,
+    fontSize: 60.sp,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   ),
   bodyText2: GoogleFonts.montserrat(
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
     color: Colors.black,
+  ),
+  headline3: GoogleFonts.raleway(
+    color: Colors.black,
+    fontSize: 20.sp,
   ),
 );
 
 ThemeData pickerTheme = ThemeData();
 
+/*
+outline is for the outlines of textbuttons 
+Icon theme is main main action icons such as sending covid alert 
+secondary color is overscroll color and splash color of some icons and buttons  when pressed
+onsurface is the theme for other icons for example show notifications
+onprimary container is the icon color for the tab icon in the bottom tab bar  when selected 
+onsecondary container is the color for the tab icon when unselected
+*/
 ColorScheme lightColorScheme = ColorScheme.light().copyWith(
   secondary: Colors.grey,
+  outline: Colors.black,
+  onSurface: Colors.black,
+  onPrimaryContainer: Colors.blue,
+  onSecondaryContainer: Colors.grey,
 );
 
 IconThemeData lightIcontheme = IconThemeData(color: Colors.blue);
+
+Color scaffoldBackground = Color(0xFFFFFFFF);
+
+AppBarTheme appBarTheme = AppBarTheme(
+  backgroundColor: Color(0xFFf8f8f8),
+);

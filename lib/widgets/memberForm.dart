@@ -16,8 +16,10 @@ class MemberForm extends StatelessWidget {
     required this.validateLName,
     required this.validatePhNum,
     required this.onSubmit,
+    this.onsubmitText,
   }) : super(key: key);
 
+  final String? onsubmitText;
   final GlobalKey<FormState> formKey;
   final TextEditingController fNameCtrlr;
   final TextEditingController lNameCtrlr;
@@ -122,7 +124,7 @@ class MemberForm extends StatelessWidget {
                         ),
                         primary: Theme.of(context).iconTheme.color),
                     child: Text(
-                      "Submit",
+                      onsubmitText ?? "Submit",
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.blue,

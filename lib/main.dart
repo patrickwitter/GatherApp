@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sizer/sizer.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart' as routeConst;
@@ -16,15 +18,24 @@ void main() async {
 class UPCApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'UPC Gather App',
-      themeMode: ThemeMode.system,
-      theme: appLightTheme,
-      darkTheme: appDarkTheme,
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: router.generateRoute,
-      initialRoute: routeConst.Routes.mediatorScreen,
-      navigatorKey: locator<NavigationService>().navigatorKey,
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return Sizer(
+      builder: (BuildContext context, Orientation orientation,
+              DeviceType deviceType) =>
+          MaterialApp(
+        title: 'UPC Gather App',
+        themeMode: ThemeMode.system,
+        theme: appLightTheme,
+        darkTheme: appDarkTheme,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: router.generateRoute,
+        initialRoute: routeConst.Routes.mediatorScreen,
+        navigatorKey: locator<NavigationService>().navigatorKey,
+      ),
     );
   }
 }

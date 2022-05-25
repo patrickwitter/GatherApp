@@ -42,6 +42,7 @@ dependencies:
   #Added to implement Google SiginIn
   google_sign_in: ^5.1.1
   google_fonts: ^2.3.2
+  sizer: ^2.0.15
   
 
 dev_dependencies:
