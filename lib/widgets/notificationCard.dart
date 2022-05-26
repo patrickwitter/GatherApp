@@ -10,6 +10,7 @@ class NotificationCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Material(
+        color: Theme.of(context).cardColor,
         elevation: 6,
         child: Container(
           constraints: BoxConstraints(

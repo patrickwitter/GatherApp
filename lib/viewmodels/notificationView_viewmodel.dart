@@ -7,6 +7,8 @@ import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
 import 'package:upc_app/widgets/notificationCard.dart';
 
+import '../widgets/customProgressIndicator.dart';
+
 class NotificationViewViewModel extends BaseViewModel {
   FirebaseService _serv = locator<FirebaseService>();
   Widget getnotifcations() {
@@ -25,7 +27,9 @@ class NotificationViewViewModel extends BaseViewModel {
                   );
                 });
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return Center(
+              child: CustomCircularProgressIndicator(),
+            );
           } else {
             return Text("error");
           }

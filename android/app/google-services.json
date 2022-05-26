@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:316501707042:android:61a03ee6742afaf5cdbd7b",
+        "mobilesdk_app_id": "1:316501707042:android:87b619dd9dbecbb9cdbd7b",
         "android_client_info": {
-          "package_name": "com.example.upc_app"
+          "package_name": "com.patrickwitter.upc_app"
         }
       },
       "oauth_client": [

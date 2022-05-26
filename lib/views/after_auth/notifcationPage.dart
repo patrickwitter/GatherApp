@@ -12,8 +12,9 @@ class NotificationsPage extends StatelessWidget {
         builder: (context, model, child) {
       return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Color(0xFFf8f8f8),
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.onSurface),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
             "Notifcations",
             style: Theme.of(context).textTheme.headline4,
