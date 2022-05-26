@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:upc_app/models/member.dart';
 
 class MemberCard extends StatelessWidget {
-  const MemberCard({required this.mem, Key? key}) : super(key: key);
+  const MemberCard({required this.mem, Key? key, this.title}) : super(key: key);
   final Member mem;
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Material(
+        color: Theme.of(context).cardColor,
         elevation: 6,
         child: Container(
           constraints: BoxConstraints(
@@ -29,11 +32,11 @@ class MemberCard extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    "Member",
+                    title ?? "Member",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
-                        ?.copyWith(fontSize: 15),
+                        ?.copyWith(fontSize: 10.sp),
                   ),
                 ),
                 Text(

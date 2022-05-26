@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upc_app/widgets/custom_textfield.dart';
 
 class MemberForm extends StatelessWidget {
   const MemberForm({
@@ -16,8 +17,10 @@ class MemberForm extends StatelessWidget {
     required this.validateLName,
     required this.validatePhNum,
     required this.onSubmit,
+    this.onsubmitText,
   }) : super(key: key);
 
+  final String? onsubmitText;
   final GlobalKey<FormState> formKey;
   final TextEditingController fNameCtrlr;
   final TextEditingController lNameCtrlr;
@@ -41,70 +44,37 @@ class MemberForm extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: fNameCtrlr,
-                  style: Theme.of(context).textTheme.headline5,
-                  decoration: InputDecoration(
-                    hintText: "Eg. Patrick",
-                    labelText: "FirstName",
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: this.validateFName,
-                ),
-              ), //fname
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.headline5,
-                  controller: lNameCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.Witter",
-                    labelText: "LastName",
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (value) => this.validateLName(value),
-                ),
+              CustomTextField(
+                ctrlr: fNameCtrlr,
+                hintString: "Eg. Patrick",
+                labelString: "FirstName",
+                validateFunc: (value) => this.validateFName(value),
+              ),
+              //fname
+              CustomTextField(
+                ctrlr: this.lNameCtrlr,
+                hintString: "Eg.Witter",
+                labelString: "LastName",
+                validateFunc: (value) => this.validateLName(value),
               ), // lname
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.headline5,
-                  controller: addressCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.Lot 49 Kale Avenue Spanish Town",
-                    labelText: "Address(No ',' or '-')",
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: this.validateAddress,
-                ),
+              CustomTextField(
+                ctrlr: addressCtrlr,
+                hintString: "Eg.Lot 49 Kale Avenue Spanish Town",
+                labelString: "Address(No ',' or '-')",
+                validateFunc: (value) => this.validateAddress(value),
               ), // adress
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  style: Theme.of(context).textTheme.headline5,
-                  controller: phoneNumCtrlr,
-                  decoration: InputDecoration(
-                    hintText: "Eg.8761234567",
-                    labelText: "Phone Number (No '-')",
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: this.validatePhNum,
-                ),
+
+              CustomTextField(
+                ctrlr: phoneNumCtrlr,
+                validateFunc: (value) => validatePhNum(value),
+                hintString: "Eg.8761234567",
+                labelString: "Phone Number (No '-')",
               ), // phone
               (isSignUp)
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        style: Theme.of(context).textTheme.headline5,
-                        controller: adminCtrlr,
-                        decoration: InputDecoration(
-                          hintText: "Enter Admin Password",
-                          labelText: "SignIn as Admin?",
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
+                  ? CustomTextField(
+                      ctrlr: adminCtrlr,
+                      hintString: "SignIn as Admin?",
+                      labelString: "Enter Admin Password",
                     )
                   : Container(), // admin password
               Padding(
@@ -118,14 +88,14 @@ class MemberForm extends StatelessWidget {
                         minimumSize: Size(200, 50),
                         side: BorderSide(
                           style: BorderStyle.solid,
-                          color: Colors.blue,
+                          color: Theme.of(context).iconTheme.color!,
                         ),
                         primary: Theme.of(context).iconTheme.color),
                     child: Text(
-                      "Submit",
+                      onsubmitText ?? "Submit",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.blue,
+                        color: Theme.of(context).iconTheme.color!,
                       ),
                     ),
                   ),
