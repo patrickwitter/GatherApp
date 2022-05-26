@@ -9,11 +9,12 @@ class MemeberSigIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<MemeberSigInViewModel>(builder: (context, model, child) {
-      return SafeArea(
-        child: Scaffold(
-          body: Container(
+      return Scaffold(
+        body: SafeArea(
+          child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
+              color: Colors.white,
               image: DecorationImage(
                 image: AssetImage("lib/assets/images/SignInImage.jpg"),
                 opacity: .5,

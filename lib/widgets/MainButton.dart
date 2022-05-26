@@ -13,9 +13,7 @@ class HomeButton extends StatelessWidget {
       onPressed: this.action,
       label: Text(
         text,
-        style: Theme.of(context).textTheme.headline5?.copyWith(
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
+        style: Theme.of(context).textTheme.subtitle2,
       ),
       backgroundColor: Theme.of(context).iconTheme.color,
       foregroundColor: Colors.white,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/viewmodels/serviceform_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
@@ -26,15 +25,11 @@ class ServiceForm extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            backgroundColor: Color(0xFFf8f8f8),
-            title: Text(
-              model.title,
-              style: GoogleFonts.lato(
-                color: Colors.black,
-                fontSize: 25,
-              ),
-            ),
+            iconTheme:
+                IconThemeData(color: Theme.of(context).colorScheme.onSurface),
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            title:
+                Text(model.title, style: Theme.of(context).textTheme.headline4),
             centerTitle: true,
           ),
           body: Padding(

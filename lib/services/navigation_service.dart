@@ -23,10 +23,14 @@ class NavigationService {
       {Duration duration = const Duration(seconds: 2)}) {
     ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(
       SnackBar(
+        backgroundColor:
+            Theme.of(navigatorKey.currentContext!).appBarTheme.backgroundColor,
         behavior: SnackBarBehavior.floating,
         duration: duration,
-        content: Text(message),
-        // backgroundColor: Colors.grey,
+        content: Text(
+          message,
+          style: Theme.of(navigatorKey.currentContext!).textTheme.caption,
+        ),
       ),
     );
   }
