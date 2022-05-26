@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.dart';
@@ -18,15 +18,15 @@ class AdminView extends StatelessWidget {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.contact_mail_sharp),
-      label: "Members ContactInfo",
+      label: "Members",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.sick),
+      label: "IMembers",
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.add_alert_outlined),
-      label: "Infected Members",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.add_alert_outlined),
-      label: "Infected Services",
+      label: "IServices",
       tooltip: "View Infected Services",
     )
   ];
@@ -44,14 +44,13 @@ class AdminView extends StatelessWidget {
       ];
 
       return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Color(0xFFf8f8f8),
+          leadingWidth: 25.w,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           title: Text(
             "Admin Panel",
-            style: GoogleFonts.lato(
-              color: Colors.black,
-              fontSize: 25,
-            ),
+            style: Theme.of(context).textTheme.headline4,
           ),
           centerTitle: true,
           leading: TextButton(
@@ -61,7 +60,9 @@ class AdminView extends StatelessWidget {
             onPressed: () => model.signout(),
             child: Text(
               "Logout",
-              style: TextStyle(fontSize: 12, color: Colors.black),
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    fontSize: 13.sp,
+                  ),
             ),
           ),
           actions: [
@@ -70,8 +71,8 @@ class AdminView extends StatelessWidget {
               icon: Icon(
                 Icons.announcement,
               ),
-              color: Colors.black,
-              iconSize: 24,
+              color: Theme.of(context).colorScheme.onSurface,
+              iconSize: 7.w,
               tooltip: "Send Notifcations",
             )
           ],
@@ -85,9 +86,10 @@ class AdminView extends StatelessWidget {
             onTap: (index) => model.updateTabIndex(index),
             items: bottomNavItems,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
-            selectedIconTheme: IconThemeData(size: 30)),
+            selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
+            unselectedItemColor:
+                Theme.of(context).colorScheme.onSecondaryContainer,
+            selectedIconTheme: IconThemeData(size: 8.w)),
         floatingActionButton: (model.isHome())
             ? HomeButton(
                 action: () => model.showServiceForm(),

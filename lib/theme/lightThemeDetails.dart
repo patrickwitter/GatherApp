@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
   headline5: For displaying information on cards
   caption: For showing additional dates such as dates on cards
   headline6: For displaying information on cards but wuth different font and weight
+  bodytext2: This is for showing infected members.
 */
 TextTheme lightTextTheme = TextTheme(
   headline5: GoogleFonts.lato(
@@ -41,8 +42,8 @@ TextTheme lightTextTheme = TextTheme(
     color: Colors.black,
   ),
   bodyText2: GoogleFonts.montserrat(
-    fontSize: 20.sp,
-    fontWeight: FontWeight.w500,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
     color: Colors.black,
   ),
   headline3: GoogleFonts.raleway(
@@ -76,3 +77,5 @@ Color scaffoldBackground = Color(0xFFFFFFFF);
 AppBarTheme appBarTheme = AppBarTheme(
   backgroundColor: Color(0xFFf8f8f8),
 );
+
+Color textbuttonColor = Colors.white;

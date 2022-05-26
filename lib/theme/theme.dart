@@ -7,6 +7,7 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
   iconTheme: lightTheme.lightIcontheme,
   scaffoldBackgroundColor: lightTheme.scaffoldBackground,
   appBarTheme: lightTheme.appBarTheme,
+  cardColor: lightTheme.textbuttonColor,
 );
 
 ThemeData appDarkTheme = ThemeData.dark();
