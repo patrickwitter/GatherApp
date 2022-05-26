@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:upc_app/viewmodels/notificationAdminView_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 
@@ -11,15 +11,14 @@ class NotificationAdminPage extends StatelessWidget {
     return BaseView<NotificationAdminView_ViewModel>(
         builder: (context, model, child) {
       return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Color(0xFFf8f8f8),
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.onSurface),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           title: Text(
             "Notifcations",
-            style: GoogleFonts.lato(
-              color: Colors.black,
-              fontSize: 25,
-            ),
+            style: Theme.of(context).textTheme.headline4,
           ),
           centerTitle: true,
         ),

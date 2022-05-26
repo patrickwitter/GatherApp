@@ -23,6 +23,7 @@ class ServiceCardButton extends StatelessWidget {
                 model.showupdateForm(serv);
               },
               child: Material(
+                color: Theme.of(context).cardColor,
                 elevation: 5,
                 borderRadius: BorderRadius.circular(20),
                 child: Column(

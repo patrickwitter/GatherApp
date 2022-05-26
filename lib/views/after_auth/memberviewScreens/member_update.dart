@@ -24,6 +24,7 @@ class UpdateMember extends StatelessWidget {
             validateFName: model.validatefName,
             validateLName: model.validatelName,
             validatePhNum: model.validatePnum,
+            onsubmitText: "Update Contact Info",
           );
         });
   }

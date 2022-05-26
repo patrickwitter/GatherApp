@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/viewmodels/serviceform_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
+import 'package:upc_app/widgets/custom_textfield.dart';
 import 'package:upc_app/widgets/optionButton.dart';
 
 /*
@@ -25,15 +25,11 @@ class ServiceForm extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            backgroundColor: Color(0xFFf8f8f8),
-            title: Text(
-              model.title,
-              style: GoogleFonts.lato(
-                color: Colors.black,
-                fontSize: 25,
-              ),
-            ),
+            iconTheme:
+                IconThemeData(color: Theme.of(context).colorScheme.onSurface),
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            title:
+                Text(model.title, style: Theme.of(context).textTheme.headline4),
             centerTitle: true,
           ),
           body: Padding(
@@ -46,15 +42,11 @@ class ServiceForm extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      TextFormField(
-                        style: Theme.of(context).textTheme.headline5,
-                        controller: model.availSpaceCtrl,
-                        decoration: InputDecoration(
-                          hintText: "50",
-                          labelText: "Set Max Attendees",
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) => model.validateSpace(value),
+                      CustomTextField(
+                        ctrlr: model.availSpaceCtrl,
+                        hintString: "50",
+                        labelString: "Set Max Attendees",
+                        validateFunc: (val) => model.validateSpace(val),
                       ),
                       SizedBox(
                         height: 40,

@@ -10,8 +10,13 @@ class MemberSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<MemberSignUpViewModel>(builder: (context, model, child) {
       return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          title: Text("Member Sign Up"),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title: Text(
+            "Member Sign Up",
+            style: Theme.of(context).textTheme.headline4,
+          ),
           centerTitle: true,
         ),
         body: MemberForm(

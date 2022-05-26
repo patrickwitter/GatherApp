@@ -95,11 +95,12 @@ class AdminView_ViewModel extends BaseViewModel {
                 itemCount: memList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return MemberCard(
+                    title: "Infected Member",
                     mem: memList[index],
                   );
                 });
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return Text("No Infected Memebers");
           } else {
             return Text("error");
           }
@@ -123,7 +124,7 @@ class AdminView_ViewModel extends BaseViewModel {
                   );
                 });
           } else if (!snapshot.hasData) {
-            return Text("No data");
+            return Text("No Infected Services");
           } else {
             return Text("error");
           }
