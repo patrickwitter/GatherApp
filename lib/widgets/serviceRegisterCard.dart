@@ -29,6 +29,7 @@ class ServiceRegisterCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
+        color: Theme.of(context).cardColor,
         elevation: 5,
         borderRadius: BorderRadius.circular(20),
         child: Column(

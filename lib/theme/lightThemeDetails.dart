@@ -50,6 +50,11 @@ TextTheme lightTextTheme = TextTheme(
     color: Colors.black,
     fontSize: 20.sp,
   ),
+  subtitle1: GoogleFonts.raleway(
+    color: Colors.black,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+  ),
 );
 
 ThemeData pickerTheme = ThemeData();
@@ -68,6 +73,7 @@ ColorScheme lightColorScheme = ColorScheme.light().copyWith(
   onSurface: Colors.black,
   onPrimaryContainer: Colors.blue,
   onSecondaryContainer: Colors.grey,
+  tertiary: Colors.blue,
 );
 
 IconThemeData lightIcontheme = IconThemeData(color: Colors.blue);
@@ -78,4 +84,5 @@ AppBarTheme appBarTheme = AppBarTheme(
   backgroundColor: Color(0xFFf8f8f8),
 );
 
-Color textbuttonColor = Colors.white;
+// cardcolor is the color that all card widgets such as member cards have in the background
+Color cardColor = Colors.white;

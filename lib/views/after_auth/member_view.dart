@@ -83,6 +83,7 @@ class MemberView extends StatelessWidget {
               children: screens,
             ),
             bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               currentIndex: model.currIndex,
               onTap: (index) => model.updateTabIndex(index),
               items: bottomNavItems,

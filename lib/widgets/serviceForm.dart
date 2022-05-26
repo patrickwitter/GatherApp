@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:upc_app/models/service.dart';
 import 'package:upc_app/viewmodels/serviceform_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
+import 'package:upc_app/widgets/custom_textfield.dart';
 import 'package:upc_app/widgets/optionButton.dart';
 
 /*
@@ -46,15 +47,11 @@ class ServiceForm extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      TextFormField(
-                        style: Theme.of(context).textTheme.headline5,
-                        controller: model.availSpaceCtrl,
-                        decoration: InputDecoration(
-                          hintText: "50",
-                          labelText: "Set Max Attendees",
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) => model.validateSpace(value),
+                      CustomTextField(
+                        ctrlr: model.availSpaceCtrl,
+                        hintString: "50",
+                        labelString: "Set Max Attendees",
+                        validateFunc: (val) => model.validateSpace(val),
                       ),
                       SizedBox(
                         height: 40,
