@@ -55,6 +55,10 @@ TextTheme lightTextTheme = TextTheme(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   ),
+  subtitle2: GoogleFonts.lato(
+    fontSize: 16.sp,
+    color: Colors.white,
+  ),
 );
 
 ThemeData pickerTheme = ThemeData();

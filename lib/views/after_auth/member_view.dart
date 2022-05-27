@@ -47,7 +47,7 @@ class MemberView extends StatelessWidget {
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
-              leadingWidth: 25.w,
+              leadingWidth: 20.w,
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               title: Text(
                 "Member Panel",
