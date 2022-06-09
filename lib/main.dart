@@ -35,7 +35,7 @@ class UPCApp extends StatelessWidget {
               DeviceType deviceType) =>
           MaterialApp(
         title: 'UPC Gather App',
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.system,
         theme: appLightTheme,
         darkTheme: appDarkTheme,
         debugShowCheckedModeBanner: false,
