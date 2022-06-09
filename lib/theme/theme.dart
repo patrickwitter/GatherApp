@@ -9,6 +9,7 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
   scaffoldBackgroundColor: lightTheme.scaffoldBackground,
   appBarTheme: lightTheme.appBarTheme,
   cardColor: lightTheme.cardColor,
+  primaryColor: Colors.black,
 );
 
 ThemeData appDarkTheme = ThemeData.dark().copyWith(
@@ -18,4 +19,5 @@ ThemeData appDarkTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: darkTheme.scaffoldBackground,
   appBarTheme: darkTheme.appBarTheme,
   cardColor: darkTheme.cardColor,
+  primaryColor: Colors.white,
 );

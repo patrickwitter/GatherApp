@@ -1,4 +1,4 @@
-package com.example.upc_app
+package com.patrickwitter.upc_app
 
 import io.flutter.embedding.android.FlutterActivity
 

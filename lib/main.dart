@@ -7,11 +7,18 @@ import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart' as routeConst;
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/theme/theme.dart';
+import 'package:upc_app/views/error_widget.dart';
 
 void main() async {
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return CustomErrorWidget(details: details);
+  };
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   setupLocator();
+
   runApp(UPCApp());
 }
 
