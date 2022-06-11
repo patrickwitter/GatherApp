@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:upc_app/constants/routes.dart';
-import 'package:upc_app/enums/enums.dart';
 import 'package:upc_app/locator.dart';
 import 'package:upc_app/models/member.dart';
-
-import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
