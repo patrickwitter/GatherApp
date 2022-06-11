@@ -26,7 +26,7 @@ class MemberView extends StatelessWidget {
       label: "Alerts",
     )
   ];
-  final List<Widget> screens = [
+  final List<Widget> screens = const [
     MemberHome(),
     UpdateMember(),
     MemberAlerts(),
