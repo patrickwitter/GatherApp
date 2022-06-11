@@ -65,7 +65,7 @@ class CustomErrorWidget extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 1.h),
                         child: Text(
-                          'Please, restart your application and if error still occurs, contact\n\n Patrick Witter by email:\n\nwitter10042001@gmail.com',
+                          'Please restart your application and if error still occurs, contact\n\n Patrick Witter by email:\n\nwitter10042001@gmail.com',
                           textAlign: TextAlign.center,
                           style: theme.textTheme.headline5,
                         ),

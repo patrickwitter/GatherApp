@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'package:upc_app/viewmodels/member_view_viewmodel.dart';
+import 'package:upc_app/viewmodels/memberview/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/MainButton.dart';
 
@@ -26,81 +26,70 @@ class MemberView extends StatelessWidget {
       label: "Alerts",
     )
   ];
-
+  final List<Widget> screens = [
+    MemberHome(),
+    UpdateMember(),
+    MemberAlerts(),
+  ];
   @override
   Widget build(BuildContext context) {
-    return BaseView<MemberView_ViewModel>(
-        onModelReady: (model) => model.initialize(),
-        builder: (context, model, child) {
-          final List<Widget> screens = [
-            MemberHome(
-              content: model.availableServicesList(),
+    return BaseView<MemberView_ViewModel>(builder: (context, model, child) {
+      return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appBar: AppBar(
+          leadingWidth: 20.w,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title: Text(
+            "Member Panel",
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          centerTitle: true,
+          leading: TextButton(
+            onPressed: () => model.signout(),
+            style: TextButton.styleFrom(
+              primary: Theme.of(context).colorScheme.secondary,
             ),
-            UpdateMember(),
-            MemberAlerts(
-                content: Text(
-              "Alerts",
-              style: Theme.of(context).textTheme.caption,
-            )),
-          ];
-
-          return Scaffold(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            appBar: AppBar(
-              leadingWidth: 20.w,
-              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-              title: Text(
-                "Member Panel",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              centerTitle: true,
-              leading: TextButton(
-                onPressed: () => model.signout(),
-                style: TextButton.styleFrom(
-                  primary: Theme.of(context).colorScheme.secondary,
-                ),
-                child: Text(
-                  "Logout",
-                  style: Theme.of(context).textTheme.caption?.copyWith(
-                        fontSize: 13.sp,
-                      ),
-                ),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () => model.showNotification(),
-                  icon: Icon(
-                    Icons.announcement,
+            child: Text(
+              "Logout",
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                    fontSize: 13.sp,
                   ),
-                  color: Theme.of(context).colorScheme.onSurface,
-                  iconSize: 7.w,
-                  tooltip: "See Notifcations",
-                )
-              ],
             ),
-            body: IndexedStack(
-              index: model.currIndex,
-              children: screens,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              currentIndex: model.currIndex,
-              onTap: (index) => model.updateTabIndex(index),
-              items: bottomNavItems,
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor:
-                  Theme.of(context).colorScheme.onPrimaryContainer,
-              unselectedItemColor:
-                  Theme.of(context).colorScheme.onSecondaryContainer,
-              selectedIconTheme: IconThemeData(size: 8.w),
-            ),
-            floatingActionButton: (model.isHome())
-                ? HomeButton(
-                    action: () => model.covidAlert(),
-                    text: "Covid Alert",
-                  )
-                : Container(),
-          );
-        });
+          ),
+          actions: [
+            IconButton(
+              onPressed: () => model.showNotification(),
+              icon: Icon(
+                Icons.announcement,
+              ),
+              color: Theme.of(context).colorScheme.onSurface,
+              iconSize: 7.w,
+              tooltip: "See Notifcations",
+            )
+          ],
+        ),
+        body: IndexedStack(
+          index: model.currIndex,
+          children: screens,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          currentIndex: model.currIndex,
+          onTap: (index) => model.updateTabIndex(index),
+          items: bottomNavItems,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
+          unselectedItemColor:
+              Theme.of(context).colorScheme.onSecondaryContainer,
+          selectedIconTheme: IconThemeData(size: 8.w),
+        ),
+        floatingActionButton: (model.isHome())
+            ? HomeButton(
+                action: () => model.covidAlert(),
+                text: "Covid Alert",
+              )
+            : Container(),
+      );
+    });
   }
 }
