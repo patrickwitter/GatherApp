@@ -7,6 +7,7 @@ import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/services/validation_service.dart';
 import 'package:upc_app/viewmodels/adminview/admin_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/adminview/admin_viewinfectedmembers_viewmodel.dart';
+import 'package:upc_app/viewmodels/adminview/admin_viewinfectedservices_viewmodel.dart';
 import 'package:upc_app/viewmodels/adminview/adminhome_viewmodel.dart';
 import 'package:upc_app/viewmodels/adminview/adminviewmember_viewmodel.dart';
 import 'package:upc_app/viewmodels/mediatorscrenn_viewmodel.dart';
@@ -40,6 +41,7 @@ void setupLocator() {
   locator.registerFactory(() => AdminHomeViewModel());
   locator.registerFactory(() => AdminViewMemberViewModel());
   locator.registerFactory(() => AdminViewInfectedMembersViewModel());
+  locator.registerFactory(() => AdminViewInfectedServicesViewModel());
 
   // Services
   locator.registerLazySingleton<FirebaseService>(() => FirebaseService());

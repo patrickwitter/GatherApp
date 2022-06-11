@@ -31,16 +31,16 @@ class AdminView extends StatelessWidget {
     )
   ];
 
+  final List<Widget> screens = const [
+    AdminHome(),
+    ViewMembers(),
+    ViewInfecMembers(),
+    ViewInfectedServices(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return BaseView<AdminView_ViewModel>(builder: (context, model, child) {
-      final List<Widget> screens = [
-        AdminHome(),
-        ViewMembers(),
-        ViewInfecMembers(),
-        ViewInfectedServices(content: model.infectedServicesList()),
-      ];
-
       return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
