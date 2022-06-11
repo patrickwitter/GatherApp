@@ -16,7 +16,6 @@ import 'package:upc_app/widgets/infectedServiceCard.dart';
 class AdminView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
-  // final f = locator<FirebaseFirestore>();
   NavigationService _navserv = locator<NavigationService>();
 
   void updateTabIndex(int newindex) {
@@ -30,29 +29,6 @@ class AdminView_ViewModel extends BaseViewModel {
 
   void signout() {
     _service.logoutUser();
-  }
-
-  Widget allMembersList() {
-    return StreamBuilder<QuerySnapshot>(
-        stream: _service.getMembers(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<Member> memList = _memberList(
-              snapshot.data,
-            );
-            return ListView.builder(
-                itemCount: memList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return MemberCard(
-                    mem: memList[index],
-                  );
-                });
-          } else if (!snapshot.hasData) {
-            return Text("No data");
-          } else {
-            return Text("error");
-          }
-        });
   }
 
   Widget infectedMembersList() {
