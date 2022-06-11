@@ -37,7 +37,7 @@ class AdminView extends StatelessWidget {
       final List<Widget> screens = [
         AdminHome(),
         ViewMembers(),
-        ViewInfecMembers(content: model.infectedMembersList()),
+        ViewInfecMembers(),
         ViewInfectedServices(content: model.infectedServicesList()),
       ];
 

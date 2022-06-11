@@ -31,31 +31,6 @@ class AdminView_ViewModel extends BaseViewModel {
     _service.logoutUser();
   }
 
-  Widget infectedMembersList() {
-    return StreamBuilder<QuerySnapshot>(
-        stream: _service.getInfecMembers(),
-        builder: (context, snapshot) {
-          //print(" snap status ${snapshot.hasData}");
-          if (snapshot.hasData) {
-            List<Member> memList = _memberList(
-              snapshot.data,
-            );
-            return ListView.builder(
-                itemCount: memList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return MemberCard(
-                    title: "Infected Member",
-                    mem: memList[index],
-                  );
-                });
-          } else if (!snapshot.hasData) {
-            return Text("No Infected Memebers");
-          } else {
-            return Text("error");
-          }
-        });
-  }
-
   Widget infectedServicesList() {
     return StreamBuilder<QuerySnapshot>(
         stream: _service.getInfecServices(),
@@ -87,15 +62,6 @@ class AdminView_ViewModel extends BaseViewModel {
       servList.add(Service.fromJson(servdata));
     });
     return servList;
-  }
-
-  List<Member> _memberList(QuerySnapshot<Object?>? data) {
-    List<Member> memList = [];
-    data!.docs.forEach((doc) {
-      Map<String, dynamic> memdata = doc.data() as Map<String, dynamic>;
-      memList.add(Member.fromJson(memdata));
-    });
-    return memList;
   }
 
   void showServiceForm() {
