@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:upc_app/viewmodels/member_update_viewmodel.dart';
+import 'package:upc_app/viewmodels/memberview/member_update_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/memberForm.dart';
 

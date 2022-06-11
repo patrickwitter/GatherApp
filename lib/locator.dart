@@ -9,7 +9,7 @@ import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/mediatorscrenn_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_sigin_viewmodel.dart';
 import 'package:upc_app/viewmodels/member_signup_viewmodel.dart';
-import 'package:upc_app/viewmodels/member_update_viewmodel.dart';
+import 'package:upc_app/viewmodels/memberview/member_update_viewmodel.dart';
 import 'package:upc_app/viewmodels/memberview/member_home_viewmodel.dart';
 import 'package:upc_app/viewmodels/memberview/member_view_viewmodel.dart';
 import 'package:upc_app/viewmodels/memberview/memberalert_viewmodel.dart';
