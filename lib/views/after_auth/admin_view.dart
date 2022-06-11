@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:upc_app/viewmodels/admin_view_viewmodel.dart';
+import 'package:upc_app/viewmodels/adminview/admin_view_viewmodel.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfecMembers.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.dart';
 import 'package:upc_app/views/after_auth/adminviewScreens/viewMember.dart';
@@ -35,9 +35,7 @@ class AdminView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<AdminView_ViewModel>(builder: (context, model, child) {
       final List<Widget> screens = [
-        AdminHome(
-          content: model.availableServicesList(),
-        ),
+        AdminHome(),
         ViewMembers(content: model.allMembersList()),
         ViewInfecMembers(content: model.infectedMembersList()),
         ViewInfectedServices(content: model.infectedServicesList()),

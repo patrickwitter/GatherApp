@@ -8,10 +8,9 @@ import 'package:upc_app/models/service.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
-import 'package:upc_app/widgets/customProgressIndicator.dart';
+
 import 'package:upc_app/widgets/memberCard.dart';
 import 'package:upc_app/widgets/infectedServiceCard.dart';
-import 'package:upc_app/widgets/serviceCardButton.dart';
 
 // ignore: camel_case_types
 class AdminView_ViewModel extends BaseViewModel {
@@ -31,32 +30,6 @@ class AdminView_ViewModel extends BaseViewModel {
 
   void signout() {
     _service.logoutUser();
-  }
-
-  Widget availableServicesList() {
-    return StreamBuilder<QuerySnapshot>(
-        stream: _service.getServices(),
-        builder: (context, snapshot) {
-          // print(" snap status ${snapshot.hasData}");
-          if (snapshot.hasData) {
-            List<Service> servList = _serviceList(
-              snapshot.data,
-            );
-            return ListView.builder(
-                itemCount: servList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ServiceCardButton(
-                    serv: servList[index],
-                  );
-                });
-          } else if (!snapshot.hasData) {
-            return Center(
-              child: CustomCircularProgressIndicator(),
-            );
-          } else {
-            return Text("error");
-          }
-        });
   }
 
   Widget allMembersList() {
