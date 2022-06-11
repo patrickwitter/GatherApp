@@ -81,4 +81,13 @@ class MemberUpdateViewModel extends BaseViewModel {
     final String? err = _valserv.validateAplhaNum(address!);
     return err;
   }
+
+  @override
+  void dispose() {
+    fNameCtrlr.dispose();
+    lNameCtrlr.dispose();
+    addressCtrlr.dispose();
+    phoneNumCtrlr.dispose();
+    super.dispose();
+  }
 }
