@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 import 'package:upc_app/viewmodels/memberview/member_view_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/MainButton.dart';
+import 'package:upc_app/widgets/drawer.dart';
 
 import 'memberviewScreens/member_alert.dart';
 import 'memberviewScreens/member_update.dart';
@@ -35,6 +36,7 @@ class MemberView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<MemberView_ViewModel>(builder: (context, model, child) {
       return Scaffold(
+        key: model.scaffoldkey,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           leadingWidth: 20.w,
@@ -44,17 +46,13 @@ class MemberView extends StatelessWidget {
             style: Theme.of(context).textTheme.headline4,
           ),
           centerTitle: true,
-          leading: TextButton(
-            onPressed: () => model.signout(),
-            style: TextButton.styleFrom(
-              primary: Theme.of(context).colorScheme.secondary,
+          leading: IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 10.w,
+              color: Theme.of(context).iconTheme.color,
             ),
-            child: Text(
-              "Logout",
-              style: Theme.of(context).textTheme.caption?.copyWith(
-                    fontSize: 13.sp,
-                  ),
-            ),
+            onPressed: () => model.scaffoldkey.currentState!.openDrawer(),
           ),
           actions: [
             IconButton(
@@ -66,6 +64,44 @@ class MemberView extends StatelessWidget {
               iconSize: 7.w,
               tooltip: "See Notifcations",
             )
+          ],
+        ),
+        drawer: CustomDrawer(
+          children: [
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+                size: 8.w,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                "Logout",
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              onTap: () => model.signout(),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Row(
+                children: [
+                  Text(
+                    "Dark Mode",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Transform.scale(
+                    scale: 1.25,
+                    child: Switch.adaptive(
+                        value: model.getDarkMode(),
+                        onChanged: (isDarkMode) {
+                          model.switchDarkMode(isDarkMode);
+                        }),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
         body: IndexedStack(

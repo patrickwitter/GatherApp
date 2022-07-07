@@ -6,7 +6,10 @@ import 'package:upc_app/locator.dart';
 import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart' as routeConst;
 import 'package:upc_app/services/navigation_service.dart';
+import 'package:upc_app/services/shared_preferences_service.dart';
 import 'package:upc_app/theme/theme.dart';
+import 'package:upc_app/viewmodels/theme_viewmodel.dart';
+import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/views/error_widget.dart';
 
 void main() async {
@@ -17,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  setupLocator();
+  await setupLocator();
 
   runApp(UPCApp());
 }
@@ -33,16 +36,18 @@ class UPCApp extends StatelessWidget {
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
               DeviceType deviceType) =>
-          MaterialApp(
-        title: 'UPC Gather App',
-        themeMode: ThemeMode.system,
-        theme: appLightTheme,
-        darkTheme: appDarkTheme,
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: router.generateRoute,
-        initialRoute: routeConst.Routes.mediatorScreen,
-        navigatorKey: locator<NavigationService>().navigatorKey,
-      ),
+          BaseView<AppThemeViewModel>(builder: ((context, model, child) {
+        return MaterialApp(
+          title: 'UPC Gather App',
+          themeMode: model.themeMode,
+          theme: appLightTheme,
+          darkTheme: appDarkTheme,
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: router.generateRoute,
+          initialRoute: routeConst.Routes.mediatorScreen,
+          navigatorKey: locator<NavigationService>().navigatorKey,
+        );
+      })),
     );
   }
 }

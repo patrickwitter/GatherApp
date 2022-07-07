@@ -6,6 +6,7 @@ import 'package:upc_app/models/member.dart';
 import 'package:upc_app/services/firebase_service.dart';
 import 'package:upc_app/services/navigation_service.dart';
 import 'package:upc_app/viewmodels/baseviewmodel.dart';
+import 'package:upc_app/viewmodels/theme_viewmodel.dart';
 
 // ignore: camel_case_types
 class MemberView_ViewModel extends BaseViewModel {
@@ -13,6 +14,9 @@ class MemberView_ViewModel extends BaseViewModel {
   FirebaseService _service = locator<FirebaseService>();
   NavigationService _navserv = locator<NavigationService>();
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
+  final AppThemeViewModel _appThemeViewModel = locator<AppThemeViewModel>();
+
   void updateTabIndex(int newindex) {
     currIndex = newindex;
     notifyListeners();
@@ -63,5 +67,14 @@ class MemberView_ViewModel extends BaseViewModel {
     Member mem = Member.fromJson(data);
 
     return mem;
+  }
+
+  void switchDarkMode(darkMode) {
+    _appThemeViewModel.toogleTheme(darkMode: darkMode);
+    notifyListeners();
+  }
+
+  bool getDarkMode() {
+    return _appThemeViewModel.isDarkMode;
   }
 }

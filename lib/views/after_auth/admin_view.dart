@@ -6,6 +6,7 @@ import 'package:upc_app/views/after_auth/adminviewScreens/viewInfectedService.da
 import 'package:upc_app/views/after_auth/adminviewScreens/viewMember.dart';
 import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/widgets/MainButton.dart';
+import 'package:upc_app/widgets/drawer.dart';
 import 'adminviewScreens/admin_view_home.dart';
 
 class AdminView extends StatelessWidget {
@@ -51,17 +52,13 @@ class AdminView extends StatelessWidget {
             style: Theme.of(context).textTheme.headline4,
           ),
           centerTitle: true,
-          leading: TextButton(
-            style: TextButton.styleFrom(
-              primary: Theme.of(context).iconTheme.color,
+          leading: IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 10.w,
+              color: Theme.of(context).iconTheme.color,
             ),
-            onPressed: () => model.signout(),
-            child: Text(
-              "Logout",
-              style: Theme.of(context).textTheme.caption?.copyWith(
-                    fontSize: 13.sp,
-                  ),
-            ),
+            onPressed: () => model.scaffoldkey.currentState!.openDrawer(),
           ),
           actions: [
             IconButton(
@@ -73,6 +70,24 @@ class AdminView extends StatelessWidget {
               iconSize: 7.w,
               tooltip: "Send Notifcations",
             )
+          ],
+        ),
+        drawer: CustomDrawer(
+          children: [
+            ListTile(
+              leading: Icon(
+                Icons.logout,
+                size: 5.w,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                "Logout",
+                style: Theme.of(context).textTheme.caption?.copyWith(
+                      fontSize: 13.sp,
+                    ),
+              ),
+              onTap: () => model.signout(),
+            ),
           ],
         ),
         body: IndexedStack(
