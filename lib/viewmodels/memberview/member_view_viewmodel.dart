@@ -12,7 +12,7 @@ class MemberView_ViewModel extends BaseViewModel {
   int currIndex = 0;
   FirebaseService _service = locator<FirebaseService>();
   NavigationService _navserv = locator<NavigationService>();
-
+  GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
   void updateTabIndex(int newindex) {
     currIndex = newindex;
     notifyListeners();

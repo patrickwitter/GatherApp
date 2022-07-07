@@ -34,8 +34,11 @@ class MemberHome extends StatelessWidget {
                             stream: model.isMemberRegistered(
                               serv: servList[index],
                             ),
-                            action: () => model.register(servList[index]),
+                            actionNotRegistered: () =>
+                                model.register(servList[index]),
                             serv: servList[index],
+                            actionRegistered: () =>
+                                model.unregister(servList[index]),
                           ),
                           availSpace: servList[index].availSp,
                           numAttend: servList[index].numAttend,

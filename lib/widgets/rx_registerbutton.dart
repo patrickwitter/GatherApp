@@ -7,10 +7,11 @@ import 'package:upc_app/widgets/registerButton.dart';
 class RxRegisterButton extends StatelessWidget {
   const RxRegisterButton(
       {required this.stream,
-      required this.action,
+      required this.actionNotRegistered,
+      required this.actionRegistered,
       required this.serv,
       this.full = "Full",
-      this.hasRegistered = "Registered",
+      this.hasRegistered = "UnRegister",
       this.notRegsitered = "Register",
       Key? key})
       : super(key: key);
@@ -19,7 +20,8 @@ class RxRegisterButton extends StatelessWidget {
   final String notRegsitered;
   final String full;
   final Stream<DocumentSnapshot<Object?>>? stream;
-  final Function() action;
+  final Function() actionNotRegistered;
+  final Function() actionRegistered;
   final Service serv;
 
   @override
@@ -28,11 +30,15 @@ class RxRegisterButton extends StatelessWidget {
         stream: stream,
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data!.exists) {
-            return RegisterButton(text: hasRegistered);
+            return RegisterButton(
+              text: hasRegistered,
+              action: actionRegistered,
+              color: Colors.red[100],
+            );
           } else if (snapshot.hasData && !snapshot.data!.exists) {
             if (!serv.isFull()) {
               return RegisterButton(
-                action: action,
+                action: actionNotRegistered,
                 text: notRegsitered,
               );
             } else {

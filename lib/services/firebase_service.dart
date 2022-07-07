@@ -16,6 +16,7 @@ class FirebaseService implements DataBaseService {
 
   GoogleSignInAccount get user => _user!;
 
+  // Auth Methods
   @override
   Future loginUser() async {
     final googleUser = await _googleSigin.signIn();
@@ -38,6 +39,30 @@ class FirebaseService implements DataBaseService {
     _authInstance.signOut();
   }
 
+  Future<void> addAdmin(Member mem) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.admin)
+        .collection(Collection.churchadmin)
+        .doc(mem.uid)
+        .set(mem.toJson());
+  }
+
+  Future<bool> verifyPassword(String pass) async {
+    QuerySnapshot isvalid = await _firestoreInstance
+        .collection(Collection.church)
+        .where(
+          "adminPassword",
+          isEqualTo: pass,
+        )
+        .get();
+
+    return isvalid.docs.length != 0;
+  }
+
+  // End Auth Methods
+
+  // Member Methods
   Future addMember(Member mem) {
     return _firestoreInstance
         .collection(Collection.church)
@@ -94,13 +119,31 @@ class FirebaseService implements DataBaseService {
         .set(serv.tojson());
   }
 
-  Future addService(Service serv) {
+  Future unregisterMemberService(Service serv, Member mem) async {
+    await _removeMemberFromService(serv, mem);
+    return _removeServiceFromMember(serv, mem);
+  }
+
+  Future _removeMemberFromService(Service serv, Member mem) async {
     return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.services)
         .collection(Collection.churchservices)
         .doc(serv.id)
-        .set(serv.tojson());
+        .collection(Collection.attendees)
+        .doc(mem.uid)
+        .delete();
+  }
+
+  Future _removeServiceFromMember(Service serv, Member mem) async {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.members)
+        .collection(Collection.churchmembers)
+        .doc(mem.uid)
+        .collection(Collection.registeredServices)
+        .doc(serv.id)
+        .delete();
   }
 
   Future addInfectedService(Member mem) async {
@@ -114,19 +157,40 @@ class FirebaseService implements DataBaseService {
     // print("got registered serv ${allserv.docs.length}");
     allserv.docs.forEach((element) async {
       Map<String, dynamic> dat = element.data() as Map<String, dynamic>;
-      await addServhelper(Service.fromJson(dat));
+      await _addInfecServhelper(Service.fromJson(dat));
     });
 
     // all into infected services collection
   }
 
-  Future<void> addServhelper(Service serv) {
+  Future<void> _addInfecServhelper(Service serv) {
     // print("added service\n ${serv.tojson()}");
 
     return _firestoreInstance
         .collection(Collection.church)
         .doc(Document.iservices)
         .collection(Collection.infectedServices)
+        .doc(serv.id)
+        .set(serv.tojson());
+  }
+
+  Future updateNumSpaces(Service serv) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.services)
+        .collection(Collection.churchservices)
+        .doc(serv.id)
+        .update({
+      "space": serv.availSp.toString(),
+      "attendees": serv.numAttend,
+    });
+  }
+
+  Future addService(Service serv) {
+    return _firestoreInstance
+        .collection(Collection.church)
+        .doc(Document.services)
+        .collection(Collection.churchservices)
         .doc(serv.id)
         .set(serv.tojson());
   }
@@ -138,27 +202,6 @@ class FirebaseService implements DataBaseService {
         .collection(Collection.infectedMembers)
         .doc(mem.uid)
         .set(mem.toJson());
-  }
-
-  Future<void> addAdmin(Member mem) {
-    return _firestoreInstance
-        .collection(Collection.church)
-        .doc(Document.admin)
-        .collection(Collection.churchadmin)
-        .doc(mem.uid)
-        .set(mem.toJson());
-  }
-
-  Future<bool> verifyPassword(String pass) async {
-    QuerySnapshot isvalid = await _firestoreInstance
-        .collection(Collection.church)
-        .where(
-          "adminPassword",
-          isEqualTo: pass,
-        )
-        .get();
-
-    return isvalid.docs.length != 0;
   }
 
   Future<void> addNotfication(Notifications note) {

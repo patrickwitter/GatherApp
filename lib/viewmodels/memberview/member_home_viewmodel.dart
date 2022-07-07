@@ -44,7 +44,13 @@ class MemberHomeViewModel extends BaseViewModel {
 
   void register(Service serv) async {
     serv.register();
-    _service.addService(serv);
+    _service.updateNumSpaces(serv);
     _service.registerMemberService(serv, _member);
+  }
+
+  void unregister(Service serv) async {
+    serv.unregister();
+    _service.updateNumSpaces(serv);
+    _service.unregisterMemberService(serv, _member);
   }
 }

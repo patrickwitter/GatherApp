@@ -44,6 +44,11 @@ class Service {
     _availSpace--;
   }
 
+  void unregister() {
+    _numAttendes--;
+    _availSpace++;
+  }
+
   String _generateId() {
     return DateTime.now().toIso8601String();
   }
@@ -56,9 +61,7 @@ class Service {
       id: json[ServiceKey.id],
       numAtt: json[ServiceKey.attendees],
     );
-    if (json[ServiceKey.time] == null) {
-      _service.addServhelper(x);
-    }
+
     return x;
   }
 

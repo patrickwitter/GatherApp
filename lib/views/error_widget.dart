@@ -55,7 +55,7 @@ class CustomErrorWidget extends StatelessWidget {
                               ? errordetails
                               : details!.exceptionAsString(),
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.subtitle2,
+                          style: theme.textTheme.subtitle1,
                         ),
                       ),
                       Divider(
