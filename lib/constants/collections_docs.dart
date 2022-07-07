@@ -19,4 +19,5 @@ class Document {
   static String iservices = "iservices";
   static String imembers = "imembers";
   static String notifications = "notifications";
+  static String covidAlerts = "CovidAlerts";
 }

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:upc_app/models/alerts.dart';
 import 'package:upc_app/viewmodels/memberview/memberalert_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';
+import 'package:upc_app/views/error_widget.dart';
 
 class MemberAlerts extends StatelessWidget {
   const MemberAlerts({
@@ -13,21 +15,25 @@ class MemberAlerts extends StatelessWidget {
     return BaseView<MemeberAlertViewModel>(
         onModelReady: (model) => model.initialize(),
         builder: (context, model, child) {
-          return StreamBuilder<QuerySnapshot>(
+          return StreamBuilder<DocumentSnapshot>(
             stream: model.getAlerts,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                print("has data");
-                print("${snapshot.data!.docs.length}");
-                return Text("has data ");
+                CovidAlert.fromJson(
+                    snapshot.data!.data() as Map<String, dynamic>);
+                return Center(
+                  child: Text(
+                    "Covid Alerts Sent: ${CovidAlert.numAlerts}",
+                  ),
+                );
               } else if (snapshot.hasError) {
-                print("error data \n ${snapshot.error}");
-
-                return Text(" error data");
+                return CustomErrorWidget(
+                  errordetails: "An error has occured ${snapshot.error}",
+                );
               } else {
                 return Center(
                   child: Text(
-                    "Alerts",
+                    "No Alerts",
                     style: Theme.of(context).textTheme.caption,
                   ),
                 );
