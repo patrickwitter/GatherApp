@@ -6,7 +6,6 @@ import 'package:upc_app/locator.dart';
 import 'package:upc_app/router.dart' as router;
 import 'package:upc_app/constants/routes.dart' as routeConst;
 import 'package:upc_app/services/navigation_service.dart';
-import 'package:upc_app/services/shared_preferences_service.dart';
 import 'package:upc_app/theme/theme.dart';
 import 'package:upc_app/viewmodels/theme_viewmodel.dart';
 import 'package:upc_app/views/base_view.dart';

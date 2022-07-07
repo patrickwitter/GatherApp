@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:upc_app/constants/service_jsonKey.dart';
-import 'package:upc_app/locator.dart';
-import 'package:upc_app/services/firebase_service.dart';
 
 class Service {
   late DateTime _serviceDate;
@@ -9,7 +7,7 @@ class Service {
   late String _id;
   late int _availSpace;
   late TimeOfDay _serviceTime;
-  static FirebaseService _service = locator<FirebaseService>();
+  // static FirebaseService _service = locator<FirebaseService>();
   Service({
     required DateTime serviceDt,
     required int availSpace,
