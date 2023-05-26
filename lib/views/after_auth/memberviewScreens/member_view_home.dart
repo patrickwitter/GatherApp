@@ -17,41 +17,53 @@ class MemberHome extends StatelessWidget {
     return BaseView<MemberHomeViewModel>(
         onModelReady: (model) => model.initialize(),
         builder: (context, model, child) {
-          return StreamBuilder<QuerySnapshot>(
-              stream: model.serviceInfo,
+          return FutureBuilder(
+              future: model.initMember(),
               builder: (context, snapshot) {
-                // print(" snap status ${snapshot.hasData}");
-                if (snapshot.hasData) {
-                  List<Service> servList;
-                  servList = model.getServiceList(
-                    snapshot.data,
-                  );
-                  return ListView.builder(
-                      itemCount: servList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ServiceRegisterCard(
-                          registerButton: RxRegisterButton(
-                            stream: model.isMemberRegistered(
-                              serv: servList[index],
-                            ),
-                            actionNotRegistered: () =>
-                                model.register(servList[index]),
-                            serv: servList[index],
-                            actionRegistered: () =>
-                                model.unregister(servList[index]),
-                          ),
-                          availSpace: servList[index].availSp,
-                          numAttend: servList[index].numAttend,
-                          servDate: servList[index].serviceDateFormat,
-                          servTime: servList[index].serviceTime.format(context),
-                        );
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return StreamBuilder<QuerySnapshot>(
+                      stream: model.serviceInfo,
+                      builder: (context, snapshot) {
+                        // print(" snap status ${snapshot.hasData}");
+                        if (snapshot.hasData) {
+                          List<Service> servList;
+                          servList = model.getServiceList(
+                            snapshot.data,
+                          );
+                          return ListView.builder(
+                              itemCount: servList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ServiceRegisterCard(
+                                  registerButton: RxRegisterButton(
+                                    stream: model.isMemberRegistered(
+                                      serv: servList[index],
+                                    ),
+                                    actionNotRegistered: () =>
+                                        model.register(servList[index]),
+                                    serv: servList[index],
+                                    actionRegistered: () =>
+                                        model.unregister(servList[index]),
+                                  ),
+                                  availSpace: servList[index].availSp,
+                                  numAttend: servList[index].numAttend,
+                                  servDate: servList[index].serviceDateFormat,
+                                  servTime: servList[index]
+                                      .serviceTime
+                                      .format(context),
+                                );
+                              });
+                        } else if (!snapshot.hasData) {
+                          return Center(
+                            child: CustomCircularProgressIndicator(),
+                          );
+                        } else {
+                          return Text("error");
+                        }
                       });
-                } else if (!snapshot.hasData) {
+                } else {
                   return Center(
                     child: CustomCircularProgressIndicator(),
                   );
-                } else {
-                  return Text("error");
                 }
               });
         });

@@ -17,6 +17,9 @@ class MemberHomeViewModel extends BaseViewModel {
 
   void initialize() async {
     _serviceStream = _service.getServices();
+  }
+
+  Future<void> initMember() async {
     _member = await getMem();
   }
 

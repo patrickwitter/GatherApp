@@ -18,14 +18,23 @@ class MemberAlerts extends StatelessWidget {
           return StreamBuilder<DocumentSnapshot>(
             stream: model.getAlerts,
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                CovidAlert.fromJson(
-                    snapshot.data!.data() as Map<String, dynamic>);
-                return Center(
-                  child: Text(
-                    "Covid Alerts Sent: ${CovidAlert.numAlerts}",
-                  ),
-                );
+              if (snapshot.hasData && snapshot.data != null) {
+                if (snapshot.data!.data() != null) {
+                  CovidAlert.fromJson(
+                      snapshot.data!.data() as Map<String, dynamic>);
+                  return Center(
+                    child: Text(
+                      "Covid Alerts Sent: ${CovidAlert.numAlerts}",
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: Text(
+                      "No Alerts",
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                  );
+                }
               } else if (snapshot.hasError) {
                 return CustomErrorWidget(
                   errordetails: "An error has occured ${snapshot.error}",
