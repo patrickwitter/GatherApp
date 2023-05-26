@@ -43,6 +43,7 @@ class AdminView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<AdminView_ViewModel>(builder: (context, model, child) {
       return Scaffold(
+        key: model.scaffoldkey,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           leadingWidth: 25.w,

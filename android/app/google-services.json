@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "316501707042",
-    "project_id": "pentecostalupcapp",
-    "storage_bucket": "pentecostalupcapp.appspot.com"
+    "project_number": "768227274634",
+    "project_id": "upcj-fb059",
+    "storage_bucket": "upcj-fb059.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:316501707042:android:87b619dd9dbecbb9cdbd7b",
+        "mobilesdk_app_id": "1:768227274634:android:85a8089db51429f8aaa273",
         "android_client_info": {
-          "package_name": "com.patrickwitter.upc_app"
+          "package_name": "com.patrickwitter.gather_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "316501707042-2pp9ft7cdeepulo1fg13smp5velggs00.apps.googleusercontent.com",
+          "client_id": "768227274634-r3shf9kmgan592485vv9q36rn0ldtppj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.patrickwitter.gather_app",
+            "certificate_hash": "220c27165771b3f755513a06d85b6fcde6c154c4"
+          }
+        },
+        {
+          "client_id": "768227274634-tsa2ehhktj04eo5jub3c1mkufqa0m0dd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbJTqyQqFraGJ8pDDS_8BUlUN9Os1y8pw"
+          "current_key": "AIzaSyBlL97Ix36_0xvS9TTr5XutVQ3IudpbVyk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "316501707042-2pp9ft7cdeepulo1fg13smp5velggs00.apps.googleusercontent.com",
+              "client_id": "768227274634-45tai6nn0lp8qipess2mg0os0iacjurk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
