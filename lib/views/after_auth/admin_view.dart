@@ -78,16 +78,36 @@ class AdminView extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.logout,
-                size: 5.w,
+                size: 8.w,
                 color: Theme.of(context).primaryColor,
               ),
               title: Text(
                 "Logout",
-                style: Theme.of(context).textTheme.caption?.copyWith(
-                      fontSize: 13.sp,
-                    ),
+                style: Theme.of(context).textTheme.headline5,
               ),
               onTap: () => model.signout(),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Row(
+                children: [
+                  Text(
+                    "Dark Mode",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Transform.scale(
+                    scale: 1.25,
+                    child: Switch.adaptive(
+                        value: model.getDarkMode(),
+                        onChanged: (isDarkMode) {
+                          model.switchDarkMode(isDarkMode);
+                        }),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
