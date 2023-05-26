@@ -12,11 +12,10 @@ import 'package:upc_app/views/base_view.dart';
 import 'package:upc_app/views/error_widget.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   ErrorWidget.builder = (FlutterErrorDetails details) {
     return CustomErrorWidget(details: details);
   };
-
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   await setupLocator();
