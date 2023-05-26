@@ -1,5 +1,7 @@
 # Gather App 
 
+Test it on google play https://play.google.com/store/apps/details?id=com.patrickwitter.upc_app
+
 The Gather App sports Google Login, light and dark mode.
 
  The app allows for the coordination of church services during the Covid Period. and notably will enable members of service to anonymously send a COVID ALERT to all attendees of a service. 
